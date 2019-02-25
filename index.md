@@ -1,4 +1,4 @@
-#自己的代码框架逻辑图
+自己的代码框架逻辑图
 # 1.前后端分离，数据库配置
 ## 暂时的环境为：1.php 5.4,2.iis，3.window 2012,4.数据库sqlerver，5.HTML+CSS+js，6、js部分为jquery，7.css部分使用bootstrap
 ## 首先定义安装环境的问题
