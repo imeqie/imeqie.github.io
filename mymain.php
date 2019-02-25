@@ -29,7 +29,7 @@ class mymain{
 		curl_close($ch);
 		return $data;
 	}
-	function http_post($url ='' , $fileurl = '' ){
+	function http_post($url ='' , $fileurl ){
 		//文件请求传输专用
 		$curl = curl_init();
 		if(class_exists('\CURLFile')){
@@ -89,7 +89,7 @@ class mymain{
 		$res =  $this->curlPost($Url);
 		return $res;
 	}
-	function get_code($url,$AGENTID){
+	function get_code($url,$corpid,$AGENTID){
 		$tourl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$corpid";
 		$tourl=$tourl."&redirect_uri=";
 		
