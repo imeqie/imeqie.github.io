@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
-大啥地方萨芬是的撒发撒飞萨芬是的飞洒发顺丰
-You can use the [editor on GitHub](https://github.com/imeqie/imeqie.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/imeqie/imeqie.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+自己的代码框架逻辑图
+1.前后端分离，数据库配置
+# 暂时的环境为：1.php 5.4,2.iis，3.window 2012,4.数据库sqlerver，5.HTML+CSS+js，6、js部分为jquery，7.css部分使用bootstrap
+# 首先定义安装环境的问题
+## 1.因为没装过linux，所以此处略。
+## 2.windows 2012，开启后，安装IIS。
+## 3.在安装IIS后，进行配置php，推荐使用php manager（用下来配置相对简单的软件，安装可用，稳定性也可以。）
+## 4.PHP方面，推荐使用5.4~5.6,暂时没安装过7。
+## 5.PHP方面，使用的配置有很多，缓存地址，容量，上传文件夹的权限等配置相应的内容。
+## 6.安装数据，当然如果是云数据库，那就此处略。
+## 7.去bootstrap下载对应的js的控件。
+## 8.另外需要下载jquery，因为考虑兼容性的问题建议版本1.8以下，因为2.0和3.0的版本会导致IE的兼容性的问题。
+## 9.配置基本模板文件
+### 1.php的基本模板：mymain.php
+### 2.HTML的基本模板：index.html
+### 3.js附加部分的模板：myapp.js
+2.相关理念
+# 从理解上，前段通过HTML组成页面+通过bootstrap的CSS+jquery进行页面的组合和变化。
+# 数据交流，前后端的交流，使用jquery的ajax进行请求和获得，因为我个人跟倾向于使用同步，不是异步。
+# PHP做相应的链接和反馈，其中链接是指对外的API以及对内的数据库的链接，两方面，通过function来完成指向，通过特定的语句模板形成json来获取对应的数据，并返回给前段。
+3.框架的内容
+具体详见代码
