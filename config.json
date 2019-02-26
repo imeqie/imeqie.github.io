@@ -1,0 +1,41 @@
+{
+    "name": "This is config!",
+    "version": "1.0",
+    "workwx":{
+                "sales": {
+                    "corpid": "ww2---e",
+                    "corpsecret": "xxxx",
+                    "AGENTID": "1000005",
+                    "explain":"这个是说明当前企业微信的企业ID，密钥，应用id分别是上面三个"
+                },
+                "other": {
+                    "corpid": "wx905d19757c42aa3a",
+                    "corpsecret": "mDvnz68_a0rfShScbeRK-8TNQXWxKRT59XibeJEn9bI",
+                    "AGENTID": "1000005",
+                    "explain":"这个是说明当前企业微信的企业ID，密钥，应用id分别是上面三个"
+                }
+               
+    },
+    "index":{
+                "index.html":"/",
+                "php":"/php", 
+                "html":"/html",
+                "css":"/css",
+                "js":"/js",
+                "img":"/img",
+                "other":"/other"
+    },
+    "mainscrpit":{
+                "php":"/php/mymain.php",
+                "js":"/myapp.js",
+                "js":"/js/jquery.min.js",
+                "js":"/js/bootstrap.min.js",
+                "js":"/js/jqPaginator.js",
+                "js":"/js/JsonExportExcel.min.js",
+                "js":"/js/jquery.cookie.js",
+                "js":"/js/jscharts.js",
+                "css":"css/bootstrap.min.css"
+    }
+
+
+}
