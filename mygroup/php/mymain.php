@@ -149,7 +149,6 @@ class mymain{
 		//提供http://pos1.mariedalgar.com/poswarning/workwx/YESIC/adminlogin.html 登陆用密码表简化版本
 		$passwordforadmin['admin']="123456789";
 		$passwordforadmin['wangyq']="121700";
-		$passwordforadmin['18601037124']="18601037124";
 		$passwordforadmin['guest']="123321";
 		$passwordforadmin['yesic']="isees";
 		if ($passwordforadmin[$form_name]==$form_pass)
