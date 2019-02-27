@@ -311,8 +311,7 @@ $(document).ready(function(){
 	})
 	//1.销售概况
 	let dothing=function(picn,putid){
-		message=app.toajax('php/mymain.php','select',picn);
-		//message=app.toajax('php/adminindex.php','putct','');
+		//message=app.toajax('php/mymain.php','select',picn);
 		//let res=eval('(' + message + ')');
 		let res={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-27","putct":"1","zsale":"169.00","salenum":"1","cossalenum":"0","bigsale":"0","orgname":"公主岭成成美妆","yesicsale":"169.00"}],"rows":1};
 		if (res.returnCode==0)
@@ -344,14 +343,14 @@ $(document).ready(function(){
 	//3.最近七天销售情况
 	let dothing1=function(picn,putid,putype){
 		//message=app.toajax('php/mymain.php','select',picn);
-		message={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-20","yesicsale":"16809.77"},{"sdate":"2019-02-21","yesicsale":"22267.50"},{"sdate":"2019-02-22","yesicsale":"23909.75"},{"sdate":"2019-02-23","yesicsale":"50660.98"},{"sdate":"2019-02-24","yesicsale":"24518.34"},{"sdate":"2019-02-25","yesicsale":"38815.04"},{"sdate":"2019-02-26","yesicsale":"21986.00"},{"sdate":"2019-02-27","yesicsale":"169.00"}],"rows":8};
-		let res=eval('(' + message + ')');
+		//let res=eval('(' + message + ')');
+		let res={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-20","yesicsale":"16809.77"},{"sdate":"2019-02-21","yesicsale":"22267.50"},{"sdate":"2019-02-22","yesicsale":"23909.75"},{"sdate":"2019-02-23","yesicsale":"50660.98"},{"sdate":"2019-02-24","yesicsale":"24518.34"},{"sdate":"2019-02-25","yesicsale":"38815.04"},{"sdate":"2019-02-26","yesicsale":"21986.00"},{"sdate":"2019-02-27","yesicsale":"169.00"}],"rows":8};
+		
 		if (res.returnCode==0)
 		{
-			//con=res.returnContent;
-			//console.log(con);
-			let arrs=new Array(['2019-02-18',96893.5],['2019-02-19',48869.4],['2019-02-21',16809.77],['2019-02-22',21572.5],['2019-02-24',21094.75]);
-			//let arrs=new Array();
+			con=res.returnContent;
+			console.log(con);	
+			let arrs=new Array();
 			for (let i=0;i<con.length;i++)
 			{
 				arrs.push(new Array(con[i].sdate,parseInt(con[i].yesicsale)));
