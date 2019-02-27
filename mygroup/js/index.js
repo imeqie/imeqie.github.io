@@ -112,7 +112,7 @@ $(document).ready(function(){
 		{
 			errors=("当前不能查询。请选择菜单项！");
 			$('#modalcon').modal('show');
-			$('.modal-body').html(app.showtie(errors));
+			$('.modal-body').html(app1.showtie(errors));
 			$('#modelsubmit').hide();
 		}else
 		{
@@ -245,7 +245,7 @@ $(document).ready(function(){
 			{
 				errors=("错误代码："+rest.returnCode+",错误信息："+rest.returnMsg);
 				$('#modalcon').modal('show');
-				$('.modal-body').html(app.showtie(errors));
+				$('.modal-body').html(app1.showtie(errors));
 				$('#modelsubmit').hide();
 			}
 		
@@ -259,7 +259,7 @@ $(document).ready(function(){
 		{
 			errors=("当前不能下载！");
 			$('#modalcon').modal('show');
-			$('.modal-body').html(app.showtie(errors));
+			$('.modal-body').html(app1.showtie(errors));
 			$('#modelsubmit').hide();
 		}
 		else{
@@ -288,7 +288,7 @@ $(document).ready(function(){
 	}else
 	{
 		$('#modalcon').modal('show');
-		$('.modal-body').html(app.showtie('非法进入！'));
+		$('.modal-body').html(app1.showtie('非法进入！'));
 		$('#modelsubmit').hide();
 		$('#modelclose').hide();
 		$('#xclose').hide();
