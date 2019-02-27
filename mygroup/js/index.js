@@ -312,6 +312,7 @@ $(document).ready(function(){
 	let dothing=function(picn,putid){
 		message=app.toajax('php/mymain.php','select',picn);
 		//message=app.toajax('php/adminindex.php','putct','');
+		console.log(message);
 		let res=eval('(' + message + ')');
 		if (res.returnCode==0)
 		{
@@ -345,10 +346,10 @@ $(document).ready(function(){
 		let res=eval('(' + message + ')');
 		if (res.returnCode==0)
 		{
-			con=res.returnContent;
+			//con=res.returnContent;
 			//console.log(con);
-			//let arrs=new Array(['2019-02-18',96893.5],['2019-02-19',48869.4],['2019-02-21',16809.77],['2019-02-22',21572.5],['2019-02-24',21094.75]);
-			let arrs=new Array();
+			let arrs=new Array(['2019-02-18',96893.5],['2019-02-19',48869.4],['2019-02-21',16809.77],['2019-02-22',21572.5],['2019-02-24',21094.75]);
+			//let arrs=new Array();
 			for (let i=0;i<con.length;i++)
 			{
 				arrs.push(new Array(con[i].sdate,parseInt(con[i].yesicsale)));
