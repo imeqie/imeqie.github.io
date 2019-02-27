@@ -16,25 +16,28 @@
                 }
                
     },
-    "index":{
-                "index.html":"/",
-                "php":"/php", 
-                "html":"/html",
-                "css":"/css",
-                "js":"/js",
-                "img":"/img",
-                "other":"/other"
+    "index": {
+        "index.html": "\/",
+        "php": "\/php",
+        "html": "\/html",
+        "css": "\/css",
+        "js": "\/js",
+        "img": "\/img",
+        "other": "\/other"
     },
-    "mainscrpit":{
-                "php":"/php/mymain.php",
-                "js":"/myapp.js",
-                "js":"/js/jquery.min.js",
-                "js":"/js/bootstrap.min.js",
-                "js":"/js/jqPaginator.js",
-                "js":"/js/JsonExportExcel.min.js",
-                "js":"/js/jquery.cookie.js",
-                "js":"/js/jscharts.js",
-                "css":"css/bootstrap.min.css"
+    "mainscrpit": {
+        "php": "\/php\/mymain.php",
+        "js": {
+            "jquery": "\/js\/jquery.min.js",
+            "bootstrap": "\/js\/bootstrap.min.js",
+            "jqPaginator": "\/js\/jqPaginator.js",
+            "JsonExportExcel": "\/js\/JsonExportExcel.min.js",
+            "cookie": "\/js\/jquery.cookie.js",
+            "jscharts": "\/js\/jscharts.js",
+            "myapp": "js\/myapp.js",
+            "index": "js\/index.js"
+        },
+        "css": "css\/bootstrap.min.css"
     }
 
 
