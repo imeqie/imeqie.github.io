@@ -184,12 +184,60 @@ if($_POST['code']=='token'){
 	echo $res=$workwx->get_dep($_POST['ac'],$_POST['content']); 
 }else if ($_POST['code']=="select")
 {
-	$conn=$workwx->getpos();
-    if ($_POST['content']=='0')
-    {
-        $sqlselect="select * from xxxx";
-    }
-    $res=$workwx->sqlselect($conn,$sqlselect);
-    echo json_encode($res,JSON_UNESCAPED_UNICODE) ;
+	//$conn=$workwx->getpos();
+	// if ($_POST['content']=='0')
+	//  {
+	//     $sqlselect="select * from xxxx";
+	// }
+	// $res=$workwx->sqlselect($conn,$sqlselect);
+	if ($_POST['content']==0)
+	{
+		$res=array("returnCode"=>0,"returnMsg"=>"成功!",
+			"returnContent"=>array("sdate"=>"2019-02-26",
+			"putct"=>"44",
+			"zsale"=>"21301.00",
+			"salenum"=>"418",
+			"cossalenum"=>"16",
+			"bigsale"=>"12",
+			"orgname"=>"hdfas",
+			"yesicsale"=>"2005.00"
+		),"rows"=>1);
+	}else if ($_POST['content']==10){
+		$res=array("returnCode"=>0,"returnMsg"=>"成功!",
+			"returnContent"=>array("sdate"=>"2019-02-25",
+			"putct"=>"44",
+			"zsale"=>"2101.00",
+			"salenum"=>"418",
+			"cossalenum"=>"16",
+			"bigsale"=>"2",
+			"orgname"=>"dasd",
+			"yesicsale"=>"1005.00"
+		),"rows"=>1);
+	}else if ($_POST['content']==10){
+		$res=array("returnCode"=>0,"returnMsg"=>"成功!",
+			"returnContent"=>array("sdate"=>"2019-02-25",
+			"putct"=>"44",
+			"zsale"=>"2101.00",
+			"salenum"=>"418",
+			"cossalenum"=>"16",
+			"bigsale"=>"2",
+			"orgname"=>"dasd",
+			"yesicsale"=>"1005.00"
+		),"rows"=>1);
+	}else if ($_POST['content']==7)
+	{
+		$res=array("returnCode"=>0,"returnMsg"=>"成功!",
+			"returnContent"=>array("0"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77"),
+			"1"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77"),
+			"2"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77"),
+			"3"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77"),
+			"4"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77"),
+			"5"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77"),
+			"6"=>array("sdate"=>"2019-02-20","yesicsale"=>"16809.77")
+		),"rows"=>7);
+	}
+	echo json_encode($res,JSON_UNESCAPED_UNICODE) ;	
+
+		
 }
 ?>
