@@ -159,12 +159,6 @@ var app={
 			//dataType: "json",
 			success: function (message,status) 
 			{	
-				// if (typeof(message)=='string')
-				// {res=eval('(' + message + ')');}
-				// else if (typeof(message)=='object')
-				// {res	=message; }
-				//else if (typeof(message)=='Array')
-				// {res	=message; } 
 				res	=message;
 			},
 			error: function (message,status,errorThrown) {res=({"returnCode":404,"returnMsg":"链接失败！"})},   
