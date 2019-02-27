@@ -167,7 +167,7 @@ var app={
 				// {res	=message; } 
 				res	=message;
 			},
-			error: function (message,status,errorThrown) {res	='链接错误 '},   
+			error: function (message,status,errorThrown) {res=({"returnCode":0,"returnMsg":"成功！"})},   
 			compile: function (message){res	=message}				
 		});
 		return res;
