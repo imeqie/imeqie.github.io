@@ -314,13 +314,14 @@ $(document).ready(function(){
 		message=app.toajax('php/mymain.php','select',picn);
 		//message=app.toajax('php/adminindex.php','putct','');
 		
-		if (message){
-			console.log(message);
+		if (message!="链接错误"){
+			
+			let res=eval('(' + message + ')');
 		}else
 		{
-			message={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-27","putct":"1","zsale":"169.00","salenum":"1","cossalenum":"0","bigsale":"0","orgname":"公主岭成成美妆","yesicsale":"169.00"}],"rows":1}
+			res={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-27","putct":"1","zsale":"169.00","salenum":"1","cossalenum":"0","bigsale":"0","orgname":"公主岭成成美妆","yesicsale":"169.00"}],"rows":1}
 		}
-		let res=eval('(' + message + ')');
+		
 		if (res.returnCode==0)
 		{
 			con=res.returnContent;
@@ -350,6 +351,13 @@ $(document).ready(function(){
 	//3.最近七天销售情况
 	let dothing1=function(picn,putid,putype){
 		message=app.toajax('php/mymain.php','select',picn);
+		if (message!="链接错误"){
+			
+			let res=eval('(' + message + ')');
+		}else
+		{
+			message={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-20","yesicsale":"16809.77"},{"sdate":"2019-02-21","yesicsale":"22267.50"},{"sdate":"2019-02-22","yesicsale":"23909.75"},{"sdate":"2019-02-23","yesicsale":"50660.98"},{"sdate":"2019-02-24","yesicsale":"24518.34"},{"sdate":"2019-02-25","yesicsale":"38815.04"},{"sdate":"2019-02-26","yesicsale":"21986.00"},{"sdate":"2019-02-27","yesicsale":"169.00"}],"rows":8}
+		}
 		let res=eval('(' + message + ')');
 		if (res.returnCode==0)
 		{
