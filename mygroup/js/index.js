@@ -55,7 +55,8 @@ $(document).ready(function(){
 		else if (appid=='23'){}
 		else if (appid=='24'){}
 		else if (appid=='25'){}
-		else if (appid=='26'){$('.conv').addClass('vishid');
+		else if (appid=='26'){
+			$('.conv').addClass('vishid');
 		
 		}
 		else if (appid=='31')
@@ -312,7 +313,13 @@ $(document).ready(function(){
 	let dothing=function(picn,putid){
 		message=app.toajax('php/mymain.php','select',picn);
 		//message=app.toajax('php/adminindex.php','putct','');
-		console.log(message);
+		
+		if (message){
+			console.log(message);
+		}else
+		{
+			message={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-27","putct":"1","zsale":"169.00","salenum":"1","cossalenum":"0","bigsale":"0","orgname":"公主岭成成美妆","yesicsale":"169.00"}],"rows":1}
+		}
 		let res=eval('(' + message + ')');
 		if (res.returnCode==0)
 		{
