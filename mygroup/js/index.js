@@ -292,7 +292,7 @@ $(document).ready(function(){
 		$('#modelsubmit').hide();
 		$('#modelclose').hide();
 		$('#xclose').hide();
-		let ur='adminlogin.html';
+		let ur='login.html';
 		console.log(encodeURI(ur));
 		window.location.href=encodeURI(ur);
 	}
