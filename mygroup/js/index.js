@@ -311,8 +311,10 @@ $(document).ready(function(){
 	})
 	//1.销售概况
 	let dothing=function(picn,putid){
-		//message=app.toajax('php/mymain.php','select',picn);
-		//let res=eval('(' + message + ')');
+		/*
+		 message=app.toajax('php/mymain.php','select',picn);
+		 let res=eval('(' + message + ')');
+		 */
 		let res={"returnCode":0,"returnMsg":"成功！","returnContent":[{"sdate":"2019-02-27","putct":"1","zsale":"169.00","salenum":"1","cossalenum":"0","bigsale":"0","orgname":"公主岭成成美妆","yesicsale":"169.00"}],"rows":1};
 		if (res.returnCode==0)
 		{
