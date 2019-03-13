@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的登录模块</title>       
+    <meta charset="UTF-8">
+    <meta name="robots" content="all" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale = 1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+        overflow:hidden;
+      }
+      #app{
+        width: 100%;
+        height:100%;
+        position:absolute;
+      }
+      .container{
+        height:100%;
+        
+      }
+      .mycolour{
+        background-color: bisque;
+     
+      }
+      .addonwidth{
+        width:130px;
+      }
+
+      
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container " :class="{ mycolour: ismycolour}">
+            <div class="page-header   ">
+                <h1>Login pages <small>this is for every</small></h1>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8 col-md-8">
+                  <div class="thumbnail">
+                    <img id="pagecover" src="IMG/POS_BACK.png" alt="首页 ">
+                   
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4" >
+                  
+                    <div class="thumbnail" >
+                      <div class="caption" :style="{height:coverheight}">
+                        <h2 class="text-center">登陆</h2>
+                        <p style="visibility:hidden">..</p>
+                        <p>
+                          <div class="input-group">
+                            <span class="input-group-addon " id="basic-addon1">{{form_name}}：</span>
+                            <input type="text" class="form-control" name="form_name" placeholder="Username" aria-describedby="basic-addon1">
+                          </div>
+                        </p>
+                        <p style="visibility:hidden">..</p>
+                        <p>
+                          <div class="input-group">
+                              <span class="input-group-addon " id="basic-addon2">{{form_pwd}}：</span>
+                              <input type="text" class="form-control" name="form_pwd" :placeholder="form_pwd" aria-describedby="basic-addon2">
+                          </div>                     
+                        </p>
+                        <p style="visibility:hidden">..</p>
+                        <p style="visibility:hidden">..</p>
+                        <p style="visibility:hidden">..</p>
+                        <p>
+
+                          <a href="#" class="btn btn-primary" role="button" @click="encnchange">中英文切换</a>
+                          <a href="#" class="btn btn-default " role="button">登陆</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>  
+
+            <div @click= "details()" class="btn btn-block btn-danger">
+                I can change everything!
+                </div>
+        </div> 
+        
+ 
+        
+
+        
+    </div>      
+                
+   
+</body>
+  <!-- import Vue before Element -->
+  <script src="js/vue.js"></script>
+  <!-- import JavaScript -->
+ 
+  <script>
+    new Vue({
+        el: '#app',
+        data: {
+          ismycolour: true,
+          coverheight:0,
+          formcon:{en:['Username','Password'],cn:['用户名','密码']},
+          form_name:'Username',
+          form_pwd:'Password'
+        },
+        methods: {
+            details: function() {
+               if (this.ismycolour==true){
+                this.ismycolour=false;
+                 
+               }
+               else{
+                this.ismycolour=true;         
+               }
+                
+            },
+            tocover:function(){
+              this.coverheight=document.getElementById("pagecover").offsetHeight+'px';    
+            },
+            encnchange:function(){
+              console.log(this.form_name=="Username")
+              if(this.form_name=="Username"){
+                this.form_name=this.formcon.en[0];
+                this.form_pwd=this.formcon.en[1];
+              }else{
+                this.form_name=this.formcon.cn[0];
+                this.form_pwd=this.formcon.cn[1];
+              }
+
+            }
+
+        },
+        
+        mounted(){
+          //自动加载
+          this.tocover();
+          console.log(this.formcon.en[0])
+        }  
+    })
+  </script>
+</html>
