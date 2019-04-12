@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>这个是PIC</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+	<style>
+
+	
+	</style>
+</head>
+<body>
+
+	<div data-role="page" class="page" id="pageone" data-theme="a">
+
+		<div data-role="header"  data-position="fixed">
+			<a href="#" data-role="button">首页</a>
+			<h1>欢迎访问我的主页1</h1>
+			<a href="#" data-role="button" class="ui-btn-right" data-icon="search">搜索</a>
+		</div>
+
+		<div data-role="content" >
+			<p class="ms" style="background-color:#E9E9E4">请把鼠标指针移动到这个段落上。</p>
+			<!-- <img id="pic1" src="img/1.jpg"></img> -->
+			<!-- <img id="pic2" src="img/2.jpg"></img> -->
+			<select id="slider" data-role="slider" >
+				<option value="false">开</option>
+				<option value="true">关</option>
+			</select>
+			<p id="pTip">false</p>
+
+ 
+			
+		
+			<fieldset data-role="collapsible" data-collapsed="true">
+				<legend>点击我 - 我可以折叠！</legend>
+					<label for="name">全名：</label>
+					<input type="text" name="text" id="name">
+					<p>喜爱的颜色：</p>
+				<div data-role="controlgroup">
+					<label for="red">红色</label>
+					<input type="checkbox" name="favcolor" id="red" value="red">
+					<label for="green">绿色</label>
+					<input type="checkbox" name="favcolor" id="green" value="green">
+					<label for="blue">蓝色</label>
+					<input type="checkbox" name="favcolor" id="blue" value="blue">
+				</div>	
+				<input type="button" data-inline="true" value="提交">
+				<input type="button" data-role="button"  value="按钮">
+				<div data-role="button" class="pagetheme"> 切换主题 div</div>
+				<a data-role="button"  >按钮 a</a>
+		
+			</fieldset>
+			  <p class="swiperbut" style="border:1px solid black;margin:5px;">向右滑动 - 不要超出边框！</p>
+			  <div class="showswiper">显示滑动</div>
+			<a href="#pagetwo" data-role="button" data-transition="fade">转到页面二</a>
+		</div>
+
+		<div data-role="footer"  data-position="fixed">
+			<div data-role="navbar">
+			  <ul>
+				<li><a href="#" data-icon="plus">更多</a></li>
+				<li><a href="#" data-icon="minus">更少</a></li>
+				<li><a href="#" data-icon="delete">删除</a></li>
+				<li><a href="#" data-icon="check">喜爱</a></li>
+				<li><a href="#" data-icon="info">信息</a></li>
+			  </ul>
+			</div>
+		</div>
+
+	</div>
+	
+	<div data-role="page" class="page"  id="pagetwo">
+		<div data-role="header"  data-position="fixed">
+			<h1>欢迎访问我的主页2</h1>
+		</div>
+
+		<div data-role="content">
+			<div data-role="navbar">
+			  <ul>
+				<li><a href="#" data-icon="plus">更多</a></li>
+				<li><a href="#" data-icon="minus">更少</a></li>
+				<li><a href="#" data-icon="delete">删除</a></li>
+				<li><a href="#" data-icon="check">喜爱</a></li>
+				<li><a href="#" data-icon="info">信息</a></li>
+				<li><a href="#" data-icon="forward">向前</a></li>
+				<li><a href="#" data-icon="back">向后</a></li>
+				<li><a href="#" data-icon="star">星形</a></li>
+				<li><a href="#" data-icon="gear">选项</a></li>
+				<li><a href="#" data-icon="search">搜索</a></li>
+			  </ul>
+			</div>
+			<p>点击链接返回页面一。<b>注释：</b>：fade 是默认效果。</p>
+			<a href="#pagethree" data-role="button">第三页</a>
+		</div>
+
+		<div data-role="footer"  data-position="fixed">
+			<h1>页脚文本</h1>
+		</div>
+	</div> 
+	<div data-role="page" class="page"  id="pagethree">
+		<div data-role="header"  data-position="fixed">
+			<h1>欢迎访问我的主页3 关于折叠</h1>
+		</div>
+
+		<div data-role="content">
+			<div data-role="collapsible">
+			  <h1>点击我 - 我可以折叠！</h1>
+			  <p>我是可折叠的内容。</p>
+			</div>
+			<p>点击链接返回页面一。<b>注释：</b>：fade 是默认效果。</p>
+			<h2>没有圆角的可折叠内容块：</h2>
+			<div data-role="collapsible" data-inset="true">
+			  <h1>这是没有圆角的可折叠内容块。</h1>
+			  <p>默认地，可折叠块带有包含外边距的圆角，使用 data-inset="false" 可去掉圆角。</p>
+			</div>
+
+			<div data-role="collapsible-set" data-inset="true">
+			  <div data-role="collapsible">
+				<h3>栅格两列</h3>
+				<div class="ui-grid-a">
+				<!-- grid-a 两列，b 三列 c 四列 d 五列 -->
+					<div class="ui-block-a"><a href="#" data-role="button">第一列按钮</a><br>
+						<span>第一列：This is some text. This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button">第二列按钮</a><br>
+						<span>第二列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+				</div>
+			  </div>
+			  <div data-role="collapsible">
+				<h3>栅格三列</h3>
+				<div class="ui-grid-b">
+				<!-- grid-a 两列，b 三列 c 四列 d 五列 -->
+					<div class="ui-block-a"><a href="#" data-role="button">第一列按钮</a><br>
+						<span>第一列：This is some text. This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button">第二列按钮</a><br>
+						<span>第二列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-c">
+						<a href="#" data-role="button">第三列按钮</a><br>
+						<span>第三列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+				</div>
+			  </div>
+			  <div data-role="collapsible">
+				<h3>栅格四列</h3>
+				<div class="ui-grid-c">
+				<!-- grid-a 两列，b 三列 c 四列 d 五列 -->
+					<div class="ui-block-a"><a href="#" data-role="button">第一列按钮</a><br>
+						<span>第一列：This is some text. This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button">第二列按钮</a><br>
+						<span>第二列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-c">
+						<a href="#" data-role="button">第三列按钮</a><br>
+						<span>第三列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-d">
+						<a href="#" data-role="button">第三列按钮</a><br>
+						<span>第三列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+				</div>
+			  </div>
+			  <div data-role="collapsible">
+				<h3>栅格五列</h3>
+				<div class="ui-grid-d">
+				<!-- grid-a 两列，b 三列 c 四列 d 五列 -->
+					<div class="ui-block-a"><a href="#" data-role="button">第一列按钮</a><br>
+						<span>第一列：This is some text. This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button">第二列按钮</a><br>
+						<span>第二列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-c">
+						<a href="#" data-role="button">第三列按钮</a><br>
+						<span>第三列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-d">
+						<a href="#" data-role="button">第三列按钮</a><br>
+						<span>第三列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+					<div class="ui-block-e">
+						<a href="#" data-role="button">第三列按钮</a><br>
+						<span>第三列：This is some text. This is some text. This is some text. This is some text.</span>
+					</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+			
+		
+
+		<div data-role="footer"  data-position="fixed">
+			<h1>页脚文本</h1>
+			<a href="#pagefour" data-role="button">页面四</a>
+		</div>
+	</div>
+	<div data-role="page" class="page"  id="pagefour">
+		<div data-role="header"  data-position="fixed">
+			<h1>欢迎访问我的主页4 栅格</h1>
+		</div>
+
+		<div data-role="content">
+			<a href="#pageone" data-role="button">返回页面一</a>
+		</div>
+
+		<div data-role="footer"  data-position="fixed">
+			<h1>页脚文本</h1>
+		</div>		
+	</div> 
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+	<script>
+	function getMousePos(event) {
+       var e = event || window.event;
+       var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+       var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+       var x = e.pageX || e.clientX + scrollX;
+       var y = e.pageY || e.clientY + scrollY;
+       //alert('x: ' + x + '\ny: ' + y);
+       return { 'x': x, 'y': y };
+	}
+ 
+	$("p").mouseenter(function(){
+		$("p.ms").css("background-color","yellow");
+	});
+	
+	$('#slider').on('change',function(){
+		$("#pTip").html($("#slider").val());
+	})
+	  
+	$(document).on("pageinit","#pageone",function(){
+		$("p.swiperbut").on("swiperight",function(){
+			$('div.showswiper').html('向右滑动');
+		}).on("swipeleft",function(){
+			$('div.showswiper').html('向左滑动');
+		}).on("swipe",function(){
+			$('div.showswiper').html('水平滑动');
+		});   
+		$(document).on("scrollstart",function(){
+			//console.log("开始滚动！");
+			var stop =$(document).scrollTop();
+			console.log(stop)
+		});      
+	});
+			 
+		
+	</script>
+</body>
+</html>

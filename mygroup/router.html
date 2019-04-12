@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>我的登录模块</title>
+  <meta charset="UTF-8">
+  <meta name="robots" content="all" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale = 1.0, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #app{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    .leftmenu{
+      width:50px;
+      height: 42px;
+      background-color:ghostwhite;
+      left:-14px;
+      position: relative;
+      overflow:hidden;
+    }
+    .leftmenu:hover{
+      width:160px;
+      height: 100%;
+      
+      -webkit-filter: opacity(60%); /* Chrome, Safari, Opera */
+      filter: opacity(60%);
+    }
+    .mainpage{
+      z-index: 9999999999;
+      background-color: blanchedalmond;
+      position: relative;
+    }
+    .container{
+      height: 100%;
+      background-color: antiquewhite;
+    }
+    .listinfo{
+      z-index: 2;
+      color: #fff;
+      background-color: #a3acb4;
+      border-color: #a3acb4;
+    }
+  </style>
+</head>
+<div id="app">
+  
+  <div  class="container">
+    <div class="leftmenu">
+      <div class="list-group">
+          <a href="#" class="list-group-item listinfo">
+            <i class="glyphicon glyphicon-th-list"></i>
+          </a>
+          <a href="#page1" class="list-group-item">page1</a>
+          <a href="#page2" class="list-group-item">page2</a>
+          <a href="#page3" class="list-group-item">page3</a>
+          <a href="#page4" class="list-group-item">page4</a>
+        </div>
+    </div>
+    <div class="mainpage">
+        <div id="page1">我是page1
+            <div class="panel panel-default">
+                <div class="panel-heading">Panel heading without title</div>
+                <div class="panel-body">
+                  Panel content
+                </div>
+              </div>
+              
+        </div>
+        <div id="page2">我是page2
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                  Panel content
+                </div>
+                <div class="panel-footer">Panel footer</div>
+              </div>
+        </div>
+        <div id="page3">我是page3
+            <div class="panel panel-success">
+                <div class="panel-body">
+                  Panel content
+                </div>
+                <div class="panel-footer">Panel footer</div>
+              </div>
+        </div>
+        <div id="page4">我是page4
+            <div class="panel panel-warning">
+                <div class="panel-body">
+                  Panel content
+                </div>
+                <div class="panel-footer">Panel footer</div>
+              </div>
+        </div>
+    </div>
+  </div>
+</div>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+ 	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<!-- https://www.imeqie.xyz/mygroup/index.html -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>
+ $(document).ready(function(){
+  $(".mainpage").children().hide();
+  var lastURL=document.URL;
+  window.addEventListener('hashchange',function(e){
+
+    console.log(e.isTrusted);
+    console.log(e.oldURL);
+    console.log(e.newURL);
+    var hashStr = window.location.hash.slice(1);
+    if(hashStr){
+      $('#'+hashStr).show();
+      $('#'+hashStr).siblings().hide();
+    }else{
+      $("#app").scrollTop(0);
+    }
+
+
+  });
+
+ })    
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>我的登录模块</title>
+  <meta charset="UTF-8">
+  <meta name="robots" content="all" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale = 1.0, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #app {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  </style>
+</head>
+<div id="app">
+  <!-- <div id="mybtn" class="btn btn-default">按钮</div> -->
+  <div class="btn btn-block btn-danger">page1</div>
+  <div class="btn btn-block btn-default">page2</div>
+  <div class="btn btn-block btn-info">page3</div>
+  <div class="btn btn-block btn-primary">page4</div>  
+</div>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+ 	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<!-- https://www.imeqie.xyz/mygroup/index.html -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>
+ $(document).ready(function(){
+    const btnHeight= $('.btn').height();
+    const btnOuterHeight=$('.btn').outerHeight();
+    const appHeight= $('#app').height()-btnOuterHeight*4;
+    var btnClickCount=0;
+    var btnText='page1';
+  $('.btn').click(function(){
+      console.log($(this).text())
+      if ($(this).text() != btnText)
+      {
+        btnClickCount=0;
+        btnText=$(this).text();
+      }
+    if (btnClickCount==0){
+        $(this).height(appHeight).siblings().height(btnHeight);
+        btnClickCount++;
+    }
+    else{
+        $(this).height(btnHeight).siblings().height(btnHeight);
+        btnClickCount--;
+    }
+    
+
+  })
+ })    
+
+    
+  </script>
+</body>
+</html>

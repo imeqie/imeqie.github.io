@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>我的登录模块</title>
+    <meta charset="UTF-8">
+    <meta name="robots" content="all" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale = 1.0, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width:100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    header{
+        position:fix;
+        height: 50px;
+        background-color: darkgrey;
+    }
+    main{
+        height: 100%;
+        width:100%;
+        position: absolute;
+        background-color: azure;
+        top:50px;
+        bottom:50px;
+    }
+    footer{
+        position:absolute;
+        height: 50px;
+        width: 100%;
+        margin-bottom:0; 
+        bottom: 0;
+        background-color:blueviolet;
+
+    }
+  
+    .myswitch .btn{
+        width:50%;
+        height:33px;
+  
+    }
+    </style>
+</head>
+<body>
+    <header></header>
+    <main>
+ 
+        <div class="myswitch" data="on">
+ 
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="btn btn-default" >adaff</div>
+        </div>
+    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+ 	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<!-- https://www.imeqie.xyz/mygroup/index.html -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>
+
+    var swi=function (parentswi,swion,swioff){
+        var inputval=$(parentswi).attr('data');
+        var but1="<div class='btn btn-"+swion.mod+"' >"+swion.name+"</div>";
+        var but2="<div class='btn btn-"+swioff.mod+"' >"+swioff.name+"</div>";
+        var input3="<input type='hidden' name='mycheck' value='"+inputval+"'>";
+        var but= but1+but2+input3 ;
+        $(parentswi).html(but);
+        $(parentswi).css(
+            {
+                backgroundColor:'white',
+                width:'100px',
+                height:'35px',
+                borderRadius:'5px',
+                border: '1px solid #111' 
+            }
+        )
+      
+        if (inputval=='on')
+        {
+            $(parentswi).children().eq(0)
+            .css({filter:'alpha(opacity=100)', opacity:'1'})
+            .siblings().css({filter:'alpha(opacity=0)', opacity:'0'})
+            
+            
+        }else if (inputval=='off')
+        {
+            $(parentswi).children().eq(1)
+            .css({filter:'alpha(opacity=100)', opacity:'1'})
+            .siblings().css({filter:'alpha(opacity=0)', opacity:'0'})
+           
+        }
+
+        $(parentswi).children().on('click',function(){      
+                $(this).css({filter:'alpha(opacity=100)', opacity:'1'}).siblings().css({filter:'alpha(opacity=0)', opacity:'0'});
+                $(this).parent().attr('data',($(this).parent().attr('data')=='on'?'off':'on'));
+                $(this).next('input').val($(this).next('input').val()=='on'?'on':'off')
+        })
+
+    }
+    $(document).ready(function(){
+        let swibut={
+            parentswi:'.myswitch',
+            swion:{
+                mod:'info',
+                value:'on',
+                name:'开'
+            },
+            swioff:{
+                mod:'danger',
+                value:'off',
+                name:'关' 
+            }
+        }
+       
+        swi(swibut.parentswi,swibut.swion,swibut.swioff);
+        
+      
+
+    })    
+
+    
+  </script>
+</body>
+</html>

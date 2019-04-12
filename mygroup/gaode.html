@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="author" content="Mattia Larentis, Emanuele Marchi and Peter Stein">
+    <title>高德地图API测试</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #container {
+            width:100%; 
+           
+            background-color: #eeefff;
+        }  
+    </style>
+</head>  
+<body>
+    <div id="container"></div> 
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=83efc07dca453c2dd502ad03631b7fb0"></script> 
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        var doch =$(document).height(); //当前页面高度
+        var wh=	$(window).height(); //可见窗口高度 
+        $(document).ready(function(){
+            if (doch>wh)
+            {
+                $("#container").height(doch);
+            }
+            else
+            {
+                $("#container").height(wh);
+            }
+            var borderling={
+                18:3,
+                17:4,
+                16:4,
+                15:5,
+                14:5,
+                13:5,
+                12:6,
+                11:7,
+                10:8,
+                9:9,
+                8:10,
+                7:11,
+                6:12,
+                5:13,
+                4:14,
+                3:15,
+                2:16,
+                1:17
+            }
+            var map = new AMap.Map('container', {
+                zooms: [4,18],//设置地图级别范围
+                zoom:9,//级别
+                center: [119.030174153646, 32.057831217448],//中心点坐标
+                viewMode:'3D'//使用3D视图
+            });
+            function addmarker(mdk){
+                //标记
+                var marker = new AMap.Marker({
+                    //position:[116.39, 39.9]//位置
+                    position:mdk,
+                    offset: new AMap.Pixel(-10, -10),
+                    icon: 'https://vdata.amap.com/icons/b18/1/2.png', // 添加 Icon 图标 URL
+                    title: '上海'
+                })
+                map.add(marker);//添加到地图
+                //map.remove(marker);//移除
+            }
+            function addline(startpoint,endpoint,color,weight,style){ 
+                var startpoint=(startpoint=='')?'':startpoint;
+                var endpoint=(endpoint=='')?'':endpoint;
+              
+                var color=(color=='')?'#3366FF':color;
+                var weight=(weight=='')?'5':weight;
+                var style=(style=='')?'solid':style;
+                var lineArr = [
+                [121.3218403, 31.09346],
+                [121.281103, 30.7971151],
+                [121.180417480469, 30.939787055122],
+                [120.08406765408, 31.78379937066],
+                [119.030174153646, 32.057831217448],
+                [118.190785047744, 32.618085394966],
+                [117.017372233073, 32.63923529731],
+                [117.0167415, 32.641359],
+                ];
+                var polyline = new AMap.Polyline({
+                    path: lineArr,          //设置线覆盖物路径
+                    strokeColor: color, //线颜色
+                    strokeWeight: weight,        //线宽
+                    strokeStyle: style,   //线样式
+                });
+                map.add(polyline);
+                
+            }   
+            var lineArr = [
+                [121.3218403, 31.09346],
+                [121.281103, 30.7971151],
+                [121.180417480469, 30.939787055122],
+                [120.08406765408, 31.78379937066],
+                [119.030174153646, 32.057831217448],
+                [118.190785047744, 32.618085394966],
+                [117.017372233073, 32.63923529731],
+                [117.0167415, 32.641359],
+                ];
+            lineArr.forEach(function(item,index){
+                addmarker(item);
+            }); 
+
+            //addmarker(lineArr);
+            addline('','','#ff4d4f',20,'');
+
+            function addcir(point,rad,filcol,stcol,ctwei){
+                /* center: new AMap.LngLat(116.39,39.9),  // 圆心位置
+                    radius: 10, // 圆半径
+                    fillColor: 'red',   // 圆形填充颜色
+                    strokeColor: '#fff', // 描边颜色
+                    strokeWeight: 2, // 描边宽度
+                 */
+                var circleMarker = new AMap.CircleMarker({
+                    center: new AMap.LngLat(point[0],point[1]),  // 圆心位置
+                    radius: rad, // 圆半径
+                    fillColor: filcol,   // 圆形填充颜色
+                    strokeColor: stcol, // 描边颜色
+                    strokeWeight: ctwei, // 描边宽度
+                });
+
+                map.add(circleMarker);
+            }
+            lineArr.forEach(function(item,index){
+                addcir(item,60  ,'red','#fff',2);
+            }); 
+             
+            
+        })
+
+    </script>
+</body>
+</html>

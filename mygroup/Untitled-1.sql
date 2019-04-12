@@ -1,0 +1,1 @@
+    select isnull(sum(top5Amount),0)    from   (     select top  5 isnull(sum(totalTaxAmount),0) as top5Amount, idpartner from V_PU_PUAccountView      where V_PU_PUAccountView.voucherdate >= '$begindate$' and V_PU_PUAccountView.voucherdate <= '$enddate$'   and idmarketingOrgan = 1     group by idpartner order by top5Amount desc) temp

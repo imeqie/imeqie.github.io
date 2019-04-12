@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>我的名片</title>
+  <meta charset="UTF-8">
+  <meta name="robots" content="all" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale = 1.0, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui-for-work.min.css">
+  <style>
+  .imgheight{
+    height:200px;
+  }
+  </style>
+</head>
+<body>
+    <div id="app">
+    <div class="weui-flex imgheight">
+        <div class="weui-flex__item">
+            <img class="userid" :src="userid">
+        </div>
+        <div class="weui-flex__item">
+            <img class="logo" :src="logo">
+        </div>
+    </div>
+    <div class="weui-cells__title">联系方式</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="手机号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">部门</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="部门">
+            </div>
+        </div>          
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">职位</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="职位">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">邮箱</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" pattern="[0-9]*" placeholder="邮箱">
+            </div>
+        </div>         
+    </div>
+    <div class="button-sp-area">
+
+        <div class="weui-btn weui-btn_plain-default"> 
+        按钮
+        </div>
+    </div>
+    </div>
+    <div class="weui-footer weui-footer_fixed-bottom">
+            <p class="weui-footer__links">
+                <a href="#" class="weui-footer__link">底部链接</a>
+            </p>
+            <p class="weui-footer__text">Urban³ ©2019 This is your city! </p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <script>
+    
+    new Vue({
+        el: '#app',
+        data: function () {
+        return {
+            userid:'',
+            logo:''
+        }
+        },
+        methods: {
+            userlogo: function () {
+                console.log('xx')
+            }
+        },
+        
+        created() {
+        //自动加载
+            this.userlogo();
+
+        
+        }
+    })
+    </script>
+</body>
+</html>
