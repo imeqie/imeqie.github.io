@@ -1,0 +1,45 @@
+<ul class="nav nav-pills nav-stacked" setactive="0">
+    <li role="presentation"><a href="#Home"><i class="glyphicon glyphicon-home"></i></a></li>
+    <li role="presentation"><a href="#Profile"><i class="glyphicon glyphicon-file"></i></a></li>
+    <li role="presentation"><a href="#Messages"><i class="glyphicon glyphicon-envelope"></i></a></li>
+</ul>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#Home" aria-expanded="true"
+                aria-controls="Home">
+                <i class="glyphicon glyphicon-home"></i><span class="leftpad">首页</span>
+            </a>
+        </div>
+        <div id="Home" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#Profile"
+                aria-expanded="false" aria-controls="Profile">
+                <i class="glyphicon glyphicon-file"></i><span class="leftpad">文件</span>
+            </a>
+        </div>
+        <div id="Profile" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="list-group">
+                <a href="#" class="list-group-item active"><span class="leftpad">用户信息</span></a>
+                <a href="#" class="list-group-item"><span class="leftpad">角色分配</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="headingThree">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#Messages"
+                aria-expanded="false" aria-controls="Messages">
+                <i class="glyphicon glyphicon-envelope"></i><span class="leftpad">信息</span>
+            </a>
+        </div>
+        <div id="Messages" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="list-group">
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
+        </div>
+    </div>
+</div>

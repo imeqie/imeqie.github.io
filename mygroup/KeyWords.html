@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="author" content="Mattia Larentis, Emanuele Marchi and Peter Stein">
+    <title>KeyWords关键词</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #container {
+            width:100%; 
+            height: 400px;
+            background-color: #eeefff;
+        }  
+        #tos{
+            width:100px;
+            height: 100px;
+            background-color: #eee111;
+            position: relative;
+        }
+    </style>
+</head>  
+<body>
+    <div id="container">
+        <div id="tos">
+        </div>
+    </div>   
+    <div id="textcont">
+
+    </div>
+       
+        
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+    <script>
+        
+        $(document).ready(function () {
+            var conw=$('#container').width(); //方框的 长
+            var conh=$('#container').height(); //方框的 高
+            
+            var conMaxW=conw-100; // 方框去掉内物质的长度，计算方框的实际最宽
+            var conMaxH=conh-100; // 方框去掉内物质的高度，计算方框的实际最高
+            var clx=0; // x轴移动量初始化
+            var cly=0; // y轴移动量初始化
+            var clickcount=0; //点击次数初始化
+            $('#tos').click(function(e){
+                var conleft=$('#container').offset().left; //方框的 左侧起点坐标
+                var contop=$('#container').offset().top;  // 方框的 上方起点坐标
+                var tosleft=e.pageX-conleft;
+                var tostop=e.pageY-contop;
+                console.log(tosleft);
+                console.log(tostop);
+                clickcount=clickcount+1;
+                if (clickcount==1)
+                {
+                   
+                    $(this).mousemove(function (e) { 
+                        console.log( '可以执行:'+clickcount)
+                        
+                        clx= e.pageX-tosleft;
+                        cly= e.pageY-tostop;
+                        clx=clx>0?(clx>conMaxW?conMaxW:clx):0;
+                        cly=cly>0?(cly>conMaxH?conMaxH:cly):0;
+                        $(this).css({left:clx,top:cly});
+
+                    })
+                }else
+                {
+                    $(this).unbind('mousemove'); //取消绑定鼠标移动
+                    clickcount=0;//初始化点击事件
+                }
+                console.log(clickcount)
+               
+            });            
+        });
+        $(document).ready(function () {
+            var conts1={key:'安徽省 滁州市 洮安县 不知名路'};
+            var conts2={key:'安徽省 巢湖市 来说 不知名路'};
+            var conts3={key:'安徽省 合肥市 天街 有名'};
+            var conts={key:conts1.key+conts2.key+conts3.key};
+            var x=3;
+            var urls="https://www.yesic.com/BIreport/php/adminindex.php";
+            var codes='KeyWords';
+            var contents={
+                bgsdate:'2019-04-01',
+                ensdate:'2019-04-16'
+            };
+            $.ajax({
+                type: "POST",  
+                url: urls,
+                data:{"code": codes,"content":contents},
+                async:false,
+                //dataType: "json",
+                success: function (message,status) 
+                {	
+                    res	=message;
+                    console.log(res);
+                },
+                error: function (message,status,errorThrown) {res	='链接错误 '},   
+                compile: function (message){res	=message}				
+            });
+
+            console.log(x)
+            var vals=new Array();
+            for (let i=0;i<conts.key.length-(x);i++){
+               // vals.push(conts.key[i]+conts.key[i+x]) 
+ 
+                vals.push(conts.key.substr(i,x))
+            }
+            //console.log(vals)
+
+            function getWordCnt(arr){ 
+            
+                var obj= new Object();
+                for(var i= 0, l = arr.length; i< l; i++){ 
+                    var item = arr[i]; 
+                   // obj[i]=i;
+                    obj[item] = (obj[item] +1 ) || 1; 
+                  
+                } 
+                return obj; 
+            }
+            var newvals =getWordCnt(vals);
+            console.log(newvals)
+         
+        });
+    </script>
+</body>
+</html>

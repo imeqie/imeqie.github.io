@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="author" content="Mattia Larentis, Emanuele Marchi and Peter Stein">
+    <title>jstree</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/themes/default/style.min.css" />
+    <style>
+        #container {
+            width:100%; 
+           
+            background-color: #eeefff;
+        }  
+    </style>
+</head>  
+<body>
+    <div id="container">
+         
+    </div>   
+ 
+       
+        
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/jstree.min.js"></script>
+    <script>
+        $(function() {
+            $('#container').jstree({
+                'core' : {
+                'data' : [
+                    {
+                        "text" : "Root node",
+                        "state" : {"opened" : true },
+                        "children" : [
+                            {
+                                "text" : "Child node 1",
+                                "state" : { "selected" : true },
+                                "icon" : "glyphicon glyphicon-flash"
+                            },
+                            { 
+                                "text" : "Child node 2", 
+                                "state" : { "disabled" : true } 
+                            }
+                        ]
+                    }
+                ]
+                }
+            });
+
+            
+        });
+    </script>
+</body>
+</html>

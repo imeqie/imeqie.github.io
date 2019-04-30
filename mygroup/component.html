@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="author" content="Mattia Larentis, Emanuele Marchi and Peter Stein">
+    <title>组件</title>
+    <style>
+        html{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+        }
+        #container{
+
+            max-width: 750px;
+            max-height: 1251px;
+            height:100%;
+            background-color: aquamarine;
+
+
+        }
+        ul{
+            margin: 0 auto  ;
+
+        }
+    </style>
+</head>  
+<body>
+    <div id="container">
+         
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ 
+    <script>
+        const page={
+          
+            pages:function(n){
+                let _li ="<ul>";
+                for (let i=0;i<n.length;i++)
+                {
+                    _li+='<li>'+n[i]+'</li>';
+                }
+                _li+='</ul>';
+                return _li;
+            }
+            
+
+        }
+
+        var nae =page.pages(name=['page1','page2']);
+        console.log(nae)
+        $('#container').html(nae);
+        $("#container").css({ 
+            position: "", 
+            left: ($(window).width() - $("#container").outerWidth())/2, 
+            top: ($(window).height() - $("#container").outerHeight())/2 
+        });  
+    </script>
+</body>
+</html>
