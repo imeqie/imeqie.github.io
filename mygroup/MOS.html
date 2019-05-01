@@ -42,6 +42,22 @@
             height: 100%;
             z-index: 9999999;
         }
+        .innerform{
+            width: 61%;
+            margin:15px auto ;
+            padding: 15px;
+            background-color: aliceblue;
+            border-radius: 10px;
+        }
+
+        #usercenter {
+            position: fixed;
+            background-color: #ace;
+            bottom: -100%;
+            width: 100%;
+            height: 100%;
+            z-index: 9999999;
+        }
 
         .navright {
             float: right;
@@ -51,20 +67,71 @@
             width: 80px;
             height: 88px;
         }
-        .maleft{
-            margin-top:15px; 
-        } 
-        .mynav{
-            background-image:url(img/dlogo1.PNG);
-            background-repeat:no-repeat;
-                background-size:100% 100%;
-                -moz-background-size:100% 100%;
+
+        .maleft {
+            margin-top: 15px;
+        }
+
+        .mynav {
+            background-image: url(img/dlogo1.PNG);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            -moz-background-size: 100% 100%;
+        }
+
+        .icon {
+            margin: 10px;
+            padding: 15px;
+        }
+
+        .icon img {
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .icon-name {
+            margin-left: 40px;
+        }
+
+        .btn-line {
+            width: 100%;
+            text-align: center;
+            background-color: beige;
         }
     </style>
 </head>
 
 <body>
-
+    <!-- 标准模态框部分 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">购物车</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">确认添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--窗口主页  -->
     <div id="myapp">
         <div class="mynav nav navbar-default">
             <div class="navbar-header">
@@ -77,8 +144,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索关键词" aria-describedby="basic-addon2">
-                        <span class="input-group-addon" id="basic-addon2">搜索</span>
+                        <input type="text" class="form-control" id="search1" placeholder="搜索关键词"
+                            aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2"><a href="#search">搜索</a></span>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -91,8 +159,8 @@
                         </ol>
 
                         <!-- Wrapper for slides -->
-                        <div class ="carlistbox">
-                            //橱窗内容
+                        <div class="carlistbox">
+                            <!-- 橱窗内容 -->
                         </div>
 
                         <!-- Controls -->
@@ -107,115 +175,250 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                 
+                    <h3 class="text-center bg-info">栏目导航</h3>
                     <div class="maleft">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-xs-4"><img src="IMG/1.jpg" alt="..." class="img-responsive"></div>
-                                    <div class="col-xs-4"><img src="IMG/1.jpg" alt="..." class="img-responsive"></div>
-                                    <div class="col-xs-4"><img src="IMG/1.jpg" alt="..." class="img-responsive"></div>
-                                
-                                </div>
-                            </li>
-                        </ul>
+                        <!-- 小窗 -->
                     </div>
-                    <ul class="list-group">   
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img src="IMG/1.jpg" alt="..." class="img-thumbnail listimg">
-                                </div>
-                                <div class="col-xs-8">
-                                    <p>
-                                        <h4>gplistsfasdfsaf</h4>
-                                    </p>
-                                    <p>gplistsfasdfsaf <a href="#" class="btn btn-default" role="button">加入购物车</a></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img src="IMG/1.jpg" alt="..." class="img-thumbnail listimg">
-                                </div>
-                                <div class="col-xs-8">
-                                    <p>
-                                        <h4>gplistsfasdfsaf</h4>
-                                    </p>
-                                    <p>gplistsfasdfsaf</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img src="IMG/1.jpg" alt="..." class="img-thumbnail listimg">
-                                </div>
-                                <div class="col-xs-8">
-                                    <p>
-                                        <h4>gplistsfasdfsaf</h4>
-                                    </p>
-                                    <p>gplistsfasdfsaf</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <h3 class="text-center bg-warning">热卖区</h3>
+                    <div class="hotsale">
+                        <!-- 热卖 -->
+                    </div>
                 </div>
             </div>
         </div>
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
-                 
+
                 <div class="navbar-brand">玛疯窝@2017</div>
-                <div class="navbar-btn navright"><a class="btn btn-default">个人中心</a></div>
+                <div class="navbar-btn navright"><a class="btn btn-default" href="#usercenter">个人中心</a></div>
+                <div class="navbar-btn navright"><a class="btn btn-default" href="#Top">返回顶部</a></div>
             </div>
 
         </div>
     </div>
+    <!-- 登陆左侧滑 -->
     <div id="mymodel">
         <div class="nav">
             <div class="navbar-header">
                 <a class="navbar-brand navright" href="#Back">Back</a>
-           
+
             </div>
         </div>
+        <div class="login text-center">
+            <h3>登陆</h3>
+            <div class="mycode"></div>
+            <form class="innerform">
+                <div class="form-group">
+                    <label for="form_name">用户名</label>
+                    <input type="text" class="form-control" name="form_name" placeholder="手机号/用户名/邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="form_pwd">密码</label>
+                    <input type="password" class="form-control" name="form_pwd" placeholder="密码">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="displaypwd" > 显示密码
+                    </label>
+                </div>
+                <button type="button" id="loginsys" class="btn btn-default btn-block">登陆</button>
+            </form>
+        </div>
     </div>
-    <script type="text/javascript">
-    var app={
-        carlistbox:function(conhtml){    
-            var html='<div class="carousel-inner" role="listbox">';
-            for (var i=0;i<conhtml.length;i++)
-            {
-                console.log(conhtml.length)
-                if (i==0)
-                {
-                    html+='<div class="item active">';
-                }else
-                {
-                    html+='<div class="item">';
-                }
-                html+='<img src="'+conhtml[i].img+'" alt="...">';
-                html+='<div class="carousel-caption">'+conhtml[i].name+'</div>';
-                html+='</div>';
-            }
-            html+='</div>';
-            return html;
-        },
-        carlisthtml:[{img:'IMG/1.jpg',name:'女孩'},{img:'img/2.jpg',name:'男孩'},{img:'img/3.jpg',name:'呵呵'}]
-    }
-    $(document).ready(function(){
-        $('.carlistbox').html(app.carlistbox(app.carlisthtml));
-        console.log(app.carlistbox(app.carlisthtml))
-        $('a').on('click', function () {
-            var hash = $(this)[0].hash;
-            switch (hash) {
-                case '#Menu': $('#mymodel').animate({ left: 0 }, 800); break;
-                case '#Back': $('#mymodel').animate({ left: '-100%' }, 800); break;
-            }
+    <!-- 用户中心 -->
+    <div id="usercenter">
+        <div class="mynav nav navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#Brand"></a>
+                <a class="navbar-brand navright" href="#goHome"><i class="glyphicon glyphicon-backward"></i></a>
+            </div>
 
+        </div>
+        <div class="icon">
+            <img src="IMG/1.jpg" class="img-circle">
+            <span class="icon-name h3">名字</span>
+        </div>
+
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active"><a href="#myorder" aria-controls="myorder" role="tab"
+                        data-toggle="tab">我的订单</a>
+                </li>
+                <li role="presentation"><a href="#waitpay" aria-controls="waitpay" role="tab" data-toggle="tab">待付款</a>
+                </li>
+                <li role="presentation"><a href="#waitrec" aria-controls="waitrec" role="tab" data-toggle="tab">待收货</a>
+                </li>
+                <li role="presentation"><a href="#address" aria-controls="address" role="tab"
+                        data-toggle="tab">我的收货地址</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="myorder">
+                    <div class="panel-group" role="tablist">
+                        <div class="panel panel-info">
+                            <div class="panel-heading" role="tab" id="cg1">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#clg1"
+                                        aria-expanded="false" aria-controls="clg1">
+                                        订单1
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="clg1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cg1"
+                                aria-expanded="false" style="height: 0px;">
+                                <ul class="list-group">
+                                    <li class="list-group-item">产品A</li>
+                                    <li class="list-group-item">产品B</li>
+                                    <li class="list-group-item">产品C</li>
+                                </ul>
+                                <div class="panel-footer">合计</div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading" role="tab" id="cg2">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#clg2"
+                                        aria-expanded="false" aria-controls="clg2">
+                                        订单2
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="clg2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cg2"
+                                aria-expanded="false" style="height: 0px;">
+                                <ul class="list-group">
+                                    <li class="list-group-item">产品A</li>
+                                    <li class="list-group-item">产品B</li>
+                                    <li class="list-group-item">产品C</li>
+
+                                </ul>
+                                <div class="panel-footer">Footer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="waitpay">
+                    1.。。。
+                    2.。。。。
+                </div>
+                <div role="tabpanel" class="tab-pane" id="waitrec">
+                    1.。。。
+                    2.。。。。
+                </div>
+                <div role="tabpanel" class="tab-pane" id="address">
+                    1.。。。
+                    2.。。。。
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        var app = {
+            carlistbox: function (conhtml) {
+                var html = '<div class="carousel-inner" role="listbox">';
+                for (var i = 0; i < conhtml.length; i++) {
+                    console.log(conhtml.length)
+                    if (i == 0) {
+                        html += '<div class="item active">';
+                    } else {
+                        html += '<div class="item">';
+                    }
+                    html += '<img src="' + conhtml[i].img + '" alt="...">';
+                    html += '<div class="carousel-caption">' + conhtml[i].name + '</div>';
+                    html += '</div>';
+                }
+                html += '</div>';
+                return html;
+            },
+            carlisthtml: [{ img: 'IMG/1.jpg', name: '女孩', description: '单价30.00元' }, { img: 'img/2.jpg', name: '男孩', description: '单价34.00元' }, { img: 'img/3.jpg', name: '呵呵', description: '单价70.00元' }],
+
+            maleftbox: function (conhtml) {
+                var html = '<ul class="list-group">';
+                html += '<li class="list-group-item">';
+                html += '<div class="row">';
+                for (var i = 0; i < conhtml.length; i++) {
+                    html += '<div class="col-xs-4"><img src="' + conhtml[i].img + '" alt="..." class="img-responsive"></div>';
+                }
+                html += '</div>';
+                html += '</li>';
+                html += '</ul>';
+                return html;
+            },
+            hotsalebox: function (conhtml) {
+                var html = '<ul class="list-group">';
+                for (var i = 0; i < conhtml.length; i++) {
+                    html += '<li class="list-group-item">';
+                    html += '<div class="row">';
+                    html += '<div class="col-xs-4">';
+                    html += '<img src="' + conhtml[i].img + '" alt="..." class="img-thumbnail listimg">';
+                    html += ' </div>';
+                    html += '<div class="col-xs-8">';
+                    html += '<p>';
+                    html += '<h4>' + conhtml[i].name + '</h4>';
+                    html += '</p>';
+                    html += '<p>' + conhtml[i].description;
+                    html += '<a href="#addgoods" class="btn btn-default" role="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">加入购物车</a>';
+                    html += '</p>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</li>';
+                }
+                html += '</ul>';
+
+                return html;
+            },
+
+        }
+        $(document).ready(function () {
+            //橱窗初始化
+            //$.cookie('form_id', $('#form_name').val(), { expires: 1, path: '/' });
+            var mycode =$.cookie('wxcode');
+           // $('.mycode').html(mycode);
+            $('.innerform input[name="form_name"]').val(mycode);
+            $('.innerform input[name="form_pwd"]').val(mycode);
+            $('.carlistbox').html(app.carlistbox(app.carlisthtml));
+            //小闯初始化
+            $('.maleft').html(app.maleftbox(app.carlisthtml));
+            //热卖区域初始化
+            $('.hotsale').html(app.hotsalebox(app.carlisthtml) + app.hotsalebox(app.carlisthtml));
+            console.log(app.carlistbox(app.carlisthtml))
+            // 锚点跳转操控
+
+            $('input[name="displaypwd"]').on('change',function(){
+                var sta =$(this).is(':checked');
+                // if (sta){
+                //     $('input[name="form_pwd"]').attr({type:'text'});
+                // }else
+                // {
+                //     $('input[name="form_pwd"]').attr({type:'password'});
+                // }
+                sta==true?$('input[name="form_pwd"]').attr({type:'text'}):$('input[name="form_pwd"]').attr({type:'password'});
+            })
+            
+            $('#loginsys').on('click',function(){
+                let contents=$("form.innerform").serializeArray();
+                console.log(contents);
+            })
+            $('a').on('click', function () {
+                var hash = $(this)[0].hash;
+                console.log(hash)
+                switch (hash) {
+                    case '#Menu': $('#mymodel').animate({ left: 0 }, 800); break;
+                    case '#Back': $('#mymodel').animate({ left: '-100%' }, 500); break;
+                    case '#usercenter': $('#usercenter').animate({ bottom: '0' }, 300); break;
+                    case '#goHome': $('#usercenter').animate({ bottom: '-100%' }, 300); break;
+                    case '#search': var sea = $('#search1').val(); console.log(sea); break;
+                    case '#Top': $('html , body').stop().animate({ scrollTop: '50px' }, 500); break;
+                }
+
+            })
         })
-    })
     </script>
 
 
