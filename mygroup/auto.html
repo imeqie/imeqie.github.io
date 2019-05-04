@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="贩卖机后台模板">
+    <meta name="keywords" content="from bootstrap and jquery">
+    <meta name="author" content="Clark.King/from everyone">
+    <title>贩卖机后台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 50px 0 0 0;
+            position: absolute;
+
+        }
+
+        .left-menu {
+            width: 55px;
+            height: 100%;
+            background-color: aqua;
+            position: fixed;
+        }
+        .list-group{
+            /* 对原有的bottom进行重新定义 */
+            margin: 0;
+        }
+        .center-menu {
+
+            background-color: blue;
+            height: 100%;
+        }
+
+        .navbar-footer {
+            padding-right: 15px;
+        }
+
+        .mainrow {
+            margin-right: -15px;
+            margin-left: 40px;
+            height: 100%;
+
+        }
+
+        .panel {
+            height: 100%;
+        }
+
+        .panel-body {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .ulaspan {
+            display: none;
+            margin-left: 16px;
+        }
+
+        div.secondm a {
+            padding-left: 30px;
+
+        }
+
+        div.logins {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: black;
+            z-index: 10000;
+            /* opacity: 0.5;
+            filter:alpha(opacity=50); */
+            background: rgba(0, 0, 0, 0.5);
+        }
+        div.left-menu-secm{
+            position: fixed;
+            width:240px;
+            z-index: 9000;
+            left:55px;
+            background:rgba(255, 255, 255, 1);
+        }
+        div.mycode {
+            margin: 90px auto;
+            padding: 60px;
+            width: 430px;
+            background-color: #ace;
+            border-radius: 14px;
+        }
+
+        ul.mypage {
+            margin: 0;
+        }
+
+        #picchart {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 登陆的遮罩层 -->
+    <div class="logins">
+        <div class="mycode text-center">
+            <h1>登陆</h1>
+            <form class="innerform">
+                <div class="form-group">
+                    <label for="form_name" class="h4">用户名</label>
+                    <input type="text" class="form-control" name="form_name" placeholder="手机号/用户名/邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="form_pwd" class="h4">密码</label>
+                    <input type="password" class="form-control" name="form_pwd" placeholder="密码">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="displaypwd"> 显示密码
+                    </label>
+                </div>
+                <button type="button" id="loginsys" class="btn btn-default btn-block">登陆</button>
+            </form>
+        </div>
+    </div>
+    <!-- 顶部导航条 -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#Shrink"><i class="glyphicon glyphicon-arrow-right"></i></a>
+                <a class="navbar-brand" href="#Brand">Brand</a>
+
+                <ul class="nav navbar-nav" id="navtitlebar">
+                    <li class="active"><a href="#Home">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">模板菜单<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#none">未知</a></li>
+                            <li><a href="#none">未知</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#transaction">业务处理</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#systemver">系统版本</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="navbar-text navbar-right navbar-footer">当前用户: <a href="#" class="navbar-link">username</a></div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- 左侧侧滑菜单 55px-265px -->
+    <div class="left-menu" data-title="1">
+        
+        
+    </div>
+    <!-- 左侧侧滑菜单的辅助菜单 -->
+    <div class="left-menu-secm">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">Cras justo odio</a>
+            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item">Morbi leo risus</a>
+        </div>
+    </div>
+    <!-- 中间主页区域 -->
+    <div class="center-menu container-fluid">
+        <div class="mainrow">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <ol class="breadcrumb panel-title">
+                        <li><a href="#Home">首页</a></li>
+                    </ol>
+                </div>
+                <div class="panel-body">
+                    <!-- 中间区域的主显示区 -->
+                    <!-- centermenus.home() -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/jquery.cookie.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <script>
+        // 菜单值库初始化
+        var app = {
+            leftmenus: {
+                "#Home": { 
+                    name: "首页", icon:"glyphicon-home",pdm: {} 
+                },
+                "#system": {
+                    name: "系统设置", icon:"glyphicon-cog", pdm: {
+                        "#user": { name: "用户管理", icon:"glyphicon-user" },
+                        "#role": { name: "角色管理", icon:"glyphicon-edit" },
+                        "#systemver": { name: "系统版本", icon:"glyphicon-credit-card" }
+                    }
+                },
+                "#machine": {
+                    name: "设备管理", icon:"glyphicon-book",pdm: {
+                        "#machinelist": {name:"设备信息列表", icon:"glyphicon-menu-hamburger"},
+                        "#goods": {name:"产品信息", icon:"glyphicon-list-alt"},
+                        "#goodsclass": {name:"产品分类", icon:"glyphicon-random"}
+                    }
+                },
+                "#report": {
+                    name: "数据报表", icon:"glyphicon-folder-open",pdm: {
+                        "#salereport": {name:"销售订单列表", icon:"glyphicon-shopping-cart"},
+                        "#customer": {name:"会员列表", icon:"glyphicon-headphones"},
+                        "#paylist": {name:"支付账单", icon:"glyphicon-yen"}
+                    }
+                },
+                "#transaction": {
+                    name: "业务处理", icon:"glyphicon-pencil",pdm: {
+                        "#instore": {name:"进货处理", icon:"glyphicon-log-in"},
+                        "#outstore": {name:"出库处理", icon:"glyphicon-log-out"},
+                        "#putshelves": {name:"上架处理", icon:"glyphicon-object-align-bottom"},
+                        "#stock": {name:"库存列表", icon:"glyphicon-object-align-vertical"}
+                    }
+                }  
+            },
+            topmenufuc:function(){
+                var conhtml="";
+                var _this = this.leftmenus;
+                for (k in _this)
+                {
+                    console.log(_this[k].pdm);
+                    if (JSON.stringify(_this[k].pdm) == '{}'){
+                        conhtml +='<li class="active"><a href="'+k+'">'+_this[k].name+'</a></li>';
+                    }else{
+                        conhtml +='<li class="dropdown">';
+                        conhtml +=` <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">`+_this[k].name+`<span class="caret"></span></a>`;
+                        conhtml +='<ul class="dropdown-menu">';
+                             for (ks in _this[k].pdm){
+                                conhtml +=' <li><a href="'+ks+'">'+_this[k].pdm[ks].name+'</a></li>';
+                                conhtml +='<li role="separator" class="divider"></li>';
+                             }   
+                           
+                            conhtml +='</ul>';
+                            conhtml +='</li>';
+                    }
+                }
+                //return conhtml;
+                $('#navtitlebar').html(conhtml);
+            },
+            leftfuc: function() {
+                //左菜单的显示
+                var conhtml = '<div class="list-group firstm">';
+                var _this = this.leftmenus;
+                for (k in _this) {
+
+                    let newk = _this[k].pdm;
+                    conhtml += '<a href="' + k + '" class="list-group-item"  data-toggle="' + k.replace('#', '') + '">'; 
+                    conhtml += '<i class="glyphicon '+_this[k].icon+'"></i>';
+                    if (JSON.stringify(newk) != '{}') {
+                        conhtml += '<span class="ulaspan">' + _this[k].name + '<i class="caret"></i></span></a>';
+                        conhtml += '<div class="collapse" id="' + k.replace('#', '') + '">';
+                        conhtml += '<div class="list-group secondm">';
+                        for (ks in newk) {
+                            conhtml += '<a href="' + ks + '" class="list-group-item">';
+                            conhtml +='<i class="glyphicon '+newk[ks].icon+'"></i>';
+                            conhtml += '<span class="ulaspan">' + newk[ks].name + '</span></a>';
+                        }
+                        conhtml += '</div>';
+                        conhtml += '</div>';
+                    }else{
+                        conhtml += '<span class="ulaspan">' + _this[k].name + '</span></a>';
+                    }
+
+                }
+                conhtml +='</div>';
+                return conhtml;
+            },
+            leftlist:function(name){
+                // 左菜单的树状结构
+                var _this = this.leftmenus;
+                var ts={};
+                for (k in _this)
+                {
+                    ts[k]="";
+                    for(ks in _this[k].pdm)
+                    {
+                        ts[ks]=k;
+                    }
+                    
+                }
+                return ts[name];
+            },
+            rightmenus:function(menuname){
+                // firstm 第一层菜单名称，secondm 第二层菜单名称
+                // 右菜单的标题显示
+                var conhtml='';
+                var _this = this.leftmenus;
+                var thats= this.leftlist(menuname);
+                if (thats!='')
+                {
+                    
+                    conhtml +='<li><a href="'+thats+'">'+_this[thats].name+'</a></li>';   
+                    conhtml +='<li><a href="'+menuname+'" class="active">'+_this[thats].pdm[menuname].name +'</a></li>';                 
+                }else{
+                    conhtml +='<li><a href="'+menuname+'" class="active">'+_this[menuname].name +'</a></li>';
+                } 
+                $('ol.panel-title').html(conhtml);   
+            }
+        };
+        
+        var centermenus = {
+            Home: function () {
+                var mainhtml = `<div class="row">
+                        <div class="col-xs-12 col-sm-6  col-md-6 col-lg-5">
+                            <div class="well">
+                                <p class="text-center h2">今日简报</p>
+                                <ul class="list-group">
+                                    <li class="list-group-item">设备总数：1023</li>
+                                    <li class="list-group-item">会员总数：43</li>
+                                    <li class="list-group-item">销售金额：30023.00元</li>
+                                    <li class="list-group-item">TOP1金额：340.00元</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="picchart" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                
+                        </div>
+                    </div>`;
+                return mainhtml;
+            },
+            baseall: function () {
+                var mainhtml = '<div class="well"><p class="h3">条件区域</p>';
+                mainhtml += '   <div class="row">';
+                mainhtml += `       <div class="input-group">
+                                            <span class="input-group-addon" id="addon1">人员编号</span>
+                                            <input type="text" class="form-control" placeholder="Userid" aria-describedby="addon1">
+                                            <span class="input-group-addon" id="addon2">人员姓名</span>
+                                            <input type="text" class="form-control" placeholder="Username" aria-describedby="addon2">
+                                            <span class="input-group-addon" id="addon3">手机号</span>
+                                            <input type="text" class="form-control" placeholder="Usermob" aria-describedby="addon3">
+                                        </div>`;
+                mainhtml += `   <div role="separator" class="divider">&nbsp;</div>
+                                            <div class="input-group col-sm-offset-8 col-sm-4 col-md-offset-9 col-md-3 col-lg-offset-10 col-lg-2">
+                                                <span class="input-group-btn">
+                                                    <button class="btn  btn-info btn-block" type="button">搜索</button>
+                                                </span>
+                                            </div> `;
+
+                mainhtml += `
+                                <table class="table table-condensed table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Column heading</th>
+                                        <th>Column heading</th>
+                                        <th>Column heading</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active">
+                                        <th scope="row">1</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="success">
+                                        <th scope="row">3</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">4</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="info">
+                                        <th scope="row">5</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">6</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="warning">
+                                        <th scope="row">7</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">8</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="danger">
+                                        <th scope="row">9</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination mypage">
+                                    <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                                <ul class="pagination mypage">
+                                    <li>
+                                    <a href="#"><span aria-hidden="true">总行数:100 |</span><span aria-hidden="true">每页显示行数：</span>
+                                        <select>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </a>
+                                    </li>
+                                    <li>
+                                    <a href="#"><span aria-hidden="true">总页数:4 |</span><span aria-hidden="true">转到：</span>
+                                        <select>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </a>
+                                    </li>
+                                    
+                                </ul>`;
+                mainhtml += '   </div>';
+                mainhtml += '</div>';
+                return mainhtml;
+
+            }
+        }
+        $('.logins').hide();
+        // 获取cookie 如果没有cookie则显示登陆窗口
+        if ($.cookie('form_name')) {
+            $('.logins').hide();
+            $('.navbar-footer>a').text($.cookie('form_name'));
+        }
+        // 登陆进行处理--当前尚未校验
+        $('#loginsys').on('click', function () {
+            let contents = $("form.innerform").serializeArray();
+            console.log(contents);
+            $.cookie('form_name', contents[0].value, { expires: 0.1 });
+            $.cookie('form_pwd', contents[1].value, { expires: 0.1 });
+            window.location.reload();
+        })
+
+        //首页初始化
+        var thistitle=app.topmenufuc();
+        $('div.left-menu').html(app.leftfuc()).attr({'data-title':1});
+        var mainhtml = centermenus.Home();
+        var mainpl=app.rightmenus('#Home');
+
+       
+        $('.panel-body').html(mainhtml);
+        
+        //首页图表
+        {
+            // var myChart = echarts.init(document.getElementById('picchart'));
+            var myChart = echarts.init($('#picchart')[0]);
+            // 指定图表的配置项和数据
+            var option = {
+                title: { text: '今日简报' },
+                tooltip: {},
+                legend: { data: ['销量'] },
+                xAxis: { data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"] },
+                yAxis: {},
+                series: [{ name: '销量', type: 'bar', data: [5, 20, 36, 10, 10, 20] }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        $('a').on('click', function () {
+            $('a.list-group-item').removeClass('active');
+            $(this).addClass('active');
+            var hash = $(this)[0].hash;
+            var xtop=$(this).offset().top;
+            var datatiele=$('div.left-menu').attr('data-title')
+            //    console.log(hash)
+            switch (hash) {
+                case '':
+                    break;
+                case '#none':
+                    break;
+                case '#Shrink':
+                    console.log(hash);
+                    if (datatiele==1) {
+                        $('.left-menu').animate({ width: '265px' }, 800).attr({'data-title':2});
+                        $('.glyphicon.glyphicon-arrow-right').css("transform", "rotate(90deg)");
+                        $('.center-menu').animate({ paddingLeft: '225px' }, 800);
+                        $('.ulaspan').show();
+                        $('.left-menu-secm').animate({left:'265px'},800).hide(300);
+                    } else if (datatiele==2) {
+                        $('.left-menu').animate({ width: '55px' }, 500).attr({'data-title':1});
+                        $('.glyphicon.glyphicon-arrow-right').css("transform", "rotate(0deg)");
+                        $('.center-menu').animate({ paddingLeft: '15px' }, 500);
+                        $('.ulaspan').hide();
+                        // 当侧滑栏目收起，原来打开的下拉菜单全部收起
+                        $('div.collapse').collapse('hide');
+                        $('.left-menu-secm').animate({left:'55px'},500);
+                    }
+
+
+                    break;
+                case '#Home':
+                    var mainpl=app.rightmenus(hash);
+                   
+                    var mainhtml = centermenus.Home();
+                    $('.panel-body').html(mainhtml);
+                    //首页图表
+                    // var myChart = echarts.init(document.getElementById('picchart'));
+                    var myChart = echarts.init($('#picchart')[0]);
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: { text: '今日简报' },
+                        tooltip: {},
+                        legend: { data: ['销量'] },
+                        xAxis: { data: ["设备1", "设备2", "设备3", "设备4", "设备5", "设备6"] },
+                        yAxis: {},
+                        series: [{ name: '销量', type: 'bar', data: [5, 20, 36, 10, 10, 20] }]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    break;
+                default:
+                    var mainpl=app.rightmenus(hash);
+                    var thats=app.leftlist(hash);
+                    var mainhtml =thats!=''?  centermenus.baseall():"";
+                    $('.panel-body').html(mainhtml);
+                    if (datatiele==1){
+                        $('.left-menu-secm').css({left:'55px'}).show().offset({top:xtop});
+                    }
+                    else if (datatiele==2){
+                        $(hash).collapse('toggle');
+                    }
+                    
+
+            }
+
+        })
+        //顶部导航菜单
+        $('ul.navbar-nav>li').on('click', function () {
+            console.log($(this))
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+ 
+
+    </script>
+</body>
+
+</html>
