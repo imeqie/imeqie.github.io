@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="贩卖机后台模板">
+    <meta name="keywords" content="from bootstrap and jquery">
+    <meta name="author" content="Clark.King/from everyone">
+    <title>贩卖机后台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 50px 0 0 0;
+            position: absolute;
+
+        }
+
+        .left-menu {
+            width: 355px;
+            height: 100%;
+            background-color: aqua;
+            position: fixed;
+        }
+
+        .center-menu {
+
+            background-color: blue;
+            height: 100%;
+        }
+
+        .navbar-footer {
+            padding-right: 15px;
+        }
+
+        .mainrow {
+            margin-right: -15px;
+            margin-left: 40px;
+            height: 100%;
+
+        }
+
+        .panel {
+            height: 100%;
+        }
+
+        .panel-body {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .ulaspan {
+            display: block;
+            margin-left: 16px;
+        }
+
+        div.secondm a {
+            padding-left: 30px;
+
+        }
+
+        div.logins {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: black;
+            z-index: 10000;
+            /* opacity: 0.5;
+            filter:alpha(opacity=50); */
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        div.left-menu-secm {
+            position: fixed;
+            width: 240px;
+            z-index: 9000;
+            left: 55px;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        div.mycode {
+            margin: 90px auto;
+            padding: 60px;
+            width: 430px;
+            background-color: #ace;
+            border-radius: 14px;
+        }
+
+        ul.mypage {
+            margin: 0;
+        }
+
+        #picchart {
+            height: 300px;
+        }
+        .list-group{
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left-menu ">
+        <div class="list-group">
+
+        </div>
+
+
+    </div>
+
+    
+
+    <script>
+        var app = {
+            leftmenus: {
+                "#Home": { 
+                    name: "首页", icon:"glyphicon-home",pdm: {} 
+                },
+                "#system": {
+                    name: "系统设置", icon:"glyphicon-cog", pdm: {
+                        "#user": { name: "用户管理", icon:"glyphicon-user" },
+                        "#role": { name: "角色管理", icon:"glyphicon-edit" },
+                        "#systemver": { name: "系统版本", icon:"glyphicon-credit-card" }
+                    }
+                },
+                "#machine": {
+                    name: "设备管理", icon:"glyphicon-book",pdm: {
+                        "#machinelist": {name:"设备信息列表", icon:"glyphicon-menu-hamburger"},
+                        "#goods": {name:"产品信息", icon:"glyphicon-list-alt"},
+                        "#goodsclass": {name:"产品分类", icon:"glyphicon-random"}
+                    }
+                },
+                "#report": {
+                    name: "数据报表", icon:"glyphicon-folder-open",pdm: {
+                        "#salereport": {name:"销售订单列表", icon:"glyphicon-shopping-cart"},
+                        "#customer": {name:"会员列表", icon:"glyphicon-headphones"},
+                        "#paylist": {name:"支付账单", icon:"glyphicon-yen"}
+                    }
+                },
+                "#transaction": {
+                    name: "业务处理", icon:"glyphicon-pencil",pdm: {
+                        "#instore": {name:"进货处理", icon:"glyphicon-log-in"},
+                        "#outstore": {name:"出库处理", icon:"glyphicon-log-out"},
+                        "#putshelves": {name:"上架处理", icon:"glyphicon-object-align-bottom"},
+                        "#stock": {name:"库存列表", icon:"glyphicon-object-align-vertical"}
+                    }
+                }  
+            },
+            leftfuc: function() {
+                var conhtml = "";
+                var that = this.leftmenus
+                for (k in that) {
+
+                    let newk = that[k].pdm;
+                    conhtml += '<a href="' + k + '" class="list-group-item"  data-toggle="' + k.replace('#', '') + '">'; 
+                    conhtml += '<i class="glyphicon '+that[k].icon+'"></i>';
+                    conhtml += '<span class="ulaspan">' + that[k].name + '</span></a>';
+                    if (JSON.stringify(newk) != '{}') {
+                        conhtml += '<div class="collapse" id="' + k.replace('#', '') + '">';
+                        conhtml += '<div class="list-group sec">';
+                        for (ks in newk) {
+                            conhtml += '<a href="' + ks + '" class="list-group-item">';
+                            // conhtml += '<i class="glyphicon '+ newk[ks].icon+'"></i>';
+                            // conhtml += '<span class="ulaspan">' + newk[ks].name + '</span></a>';
+                            conhtml +=newk[ks].icon+ks+" </a>";
+                        }
+                        conhtml += '</div>';
+                        conhtml += '</div>';
+                    }
+
+                }
+                return conhtml;
+            }
+        };
+        
+        var comhtml=app.leftfuc();
+        console.log(comhtml);
+        $('ul li').on('click', function () {
+            console.log($(this))
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+        $('.left-menu>div').html(app.leftfuc())
+        $('a').on('click', function () {
+            $(this).parent('li').addClass('active').siblings().removeClass('active');
+            var hash = $(this)[0].hash;
+            //console.log(hash)
+            $(hash).collapse('toggle');
+
+        })
+
+       // console.log(app.leftmenus['#user'])
+        if (app.leftmenus['#user'])
+        {
+            console.log(app.leftmenus['#user'])
+        }else{
+
+        }
+        var ts={};
+        for (k in app.leftmenus)
+        {
+            ts[k]="";
+            for(ks in app.leftmenus[k].pdm)
+            {
+                //console.log(ks+ k)
+                ts[ks]=k;
+            }
+            
+        }
+        console.log(ts);
+
+    </script>
+</body>
+
+</html>
