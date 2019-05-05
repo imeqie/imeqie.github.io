@@ -122,15 +122,10 @@
 </head>
 
 <body>
-    <div class="left-menu ">
-        <div class="list-group">
-
-        </div>
-
+    <div class="left-menu-secm">
 
     </div>
 
-    
 
     <script>
         var app = {
@@ -192,11 +187,34 @@
 
                 }
                 return conhtml;
+            },
+            leftsecm:function(menuname){
+                var conhtml = "";
+                var that = this.leftmenus
+                for (k in that) {
+                    let newk = that[k].pdm;
+                    
+                    if (JSON.stringify(newk) != '{}') {
+                        conhtml+=(menuname==k)?'<div class="list-group sec" data-list="'+k+'">':'<div class="list-group sec hide" data-list="'+k+'">';
+                        
+                        for (ks in newk) {
+                            conhtml += '<a href="' + ks + '" class="list-group-item">';
+                            conhtml +='<i class="glyphicon '+newk[ks].icon+'"></i>';
+                            conhtml += '<span class="ulaspan">' + newk[ks].name + '</span></a>';
+                            conhtml += '</a>' ;
+                        }
+                        conhtml += '</div>';
+                        
+                    }
+                   
+                }
+                return conhtml;
             }
         };
         
-        var comhtml=app.leftfuc();
-        console.log(comhtml);
+        // var comhtml=app.leftfuc();
+        // console.log(comhtml);
+        $('.left-menu-secm').html(app.leftsecm('#system'))
         $('ul li').on('click', function () {
             console.log($(this))
             $(this).addClass('active').siblings().removeClass('active');
