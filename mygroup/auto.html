@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="auto后台模板">
+    <meta name="description" content="贩卖机后台模板">
     <meta name="keywords" content="from bootstrap and jquery">
     <meta name="author" content="Clark.King/from everyone">
-    <title>贩卖机后台</title>
+    <title>auto台</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
@@ -104,7 +104,6 @@
             left:55px;
             background:rgba(255, 255, 255, 1);
             top:50px;
-            display: none;
         }
         div.mycode {
             margin: 90px auto;
@@ -181,12 +180,7 @@
         
     </div>
     <!-- 左侧侧滑菜单的辅助菜单 -->
-    <div class="left-menu-secm" data-list="#Home">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">Cras justo odio</a>
-            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item">Morbi leo risus</a>
-        </div>
+    <div class="left-menu-secm" >
     </div>
     <!-- 中间主页区域 -->
     <div class="center-menu container-fluid">
@@ -252,7 +246,7 @@
                 var _this = this.leftmenus;
                 for (k in _this)
                 {
-                    console.log(_this[k].pdm);
+                    // console.log(_this[k].pdm);
                     if (JSON.stringify(_this[k].pdm) == '{}'){
                         conhtml +='<li class="active"><a href="'+k+'">'+_this[k].name+'</a></li>';
                     }else{
@@ -332,34 +326,22 @@
                 $('ol.panel-title').html(conhtml);   
             },
             leftsecm:function(menuname){
-                var conhtml='';
-                var _this = this.leftmenus;
-                var thats= _this[menuname].pdm;
-                console.log(thats);
-                if (thats!='')
-                {
-                    for (k in thats)
-                    {
-                        console.log(k)
-                        conhtml +='<a href="'+k+'" class="list-group-item">';
-                        conhtml +='<i class="glyphicon '+thats[k].icon+'"></i>';
-                        conhtml +='<span class="ulaspanz">'+thats[k].name+'</span></a>'; 
+                var conhtml = "";
+                var that = this.leftmenus
+                for (k in that) {
+                    let newk = that[k].pdm;
+                    if (JSON.stringify(newk) != '{}') {
+                        conhtml+=(menuname==k)?'<div class="list-group sec" data-list="'+k+'">':'<div class="list-group sec hide" id="'+k.replace('#','')+'z">';
+                        for (ks in newk) {
+                            conhtml += '<a href="' + ks + '" class="list-group-item">';
+                            conhtml +='<i class="glyphicon '+newk[ks].icon+'"></i>';
+                            conhtml += '<span class="ulaspanz">' + newk[ks].name + '</span></a>';
+                            conhtml += '</a>' ;
+                        }
+                        conhtml += '</div>';
                     }
-                              
                 }
                 return conhtml;
-                // $('div.left-menu-secm>div').html(conhtml);  
-                //         $('.left-menu-secm>div>a').on('click',function(){
-                //     $('a.list-group-item').removeClass('active');
-                //     $(this).addClass('active');
-                //     var hash = $(this)[0].hash;
-                //    // console.log(hash);
-                //     var mainpl=app.rightmenus(hash);
-                //     var mainhtml =thats!=''?  centermenus.baseall(hash):"";
-                //     $('.panel-body').html(mainhtml);
-                //     $(this).parent().parent().toggle();
-                // }) 
-                 
             }
         };
         
@@ -516,6 +498,7 @@
 
             }
         }
+        //debug
         $('.logins').hide();
         // 获取cookie 如果没有cookie则显示登陆窗口
         if ($.cookie('form_name')) {
@@ -532,13 +515,16 @@
         })
 
         //首页初始化
+        //顶部导航初始化
         var thistitle=app.topmenufuc();
-        $('div.left-menu').html(app.leftfuc()).attr({'data-title':1});
-        $('div.left-menu-secm>div').html(app.leftsecm('#Home'));  
+        //左侧菜单初始化
+        $('div.left-menu').html(app.leftfuc()).attr({'data-title':1});  
+        //左侧滑动菜单初始化
+        $('div.left-menu-secm').attr({'data-list':'#Home'}).html(app.leftsecm('#Home'));
+ 
+        //右侧页面，首页初始化   
         var mainhtml = centermenus.Home();
         var mainpl=app.rightmenus('#Home');
-
-       
         $('.panel-body').html(mainhtml);
         
         //首页图表
@@ -560,8 +546,7 @@
         $('a').on('click', function () {
             $('a.list-group-item').removeClass('active');
             $(this).addClass('active');
-            var hash = $(this)[0].hash;
-            console.log(hash);
+            var hash = $(this)[0].hash;           
             var datatiele=$('div.left-menu').attr('data-title')
             //    console.log(hash)
             switch (hash) {
@@ -591,7 +576,6 @@
                     break;
                 case '#Home':
                     var mainpl=app.rightmenus(hash);
-                   
                     var mainhtml = centermenus.Home();
                     $('.panel-body').html(mainhtml);
                     //首页图表
@@ -613,25 +597,41 @@
                 default:
                     var mainpl=app.rightmenus(hash);
                     var thats=app.leftlist(hash);
+                  
+                    //如果thasts获取到的菜单不为空，表示为子菜单的锚点，子菜单的点击就会让主页面更替。
                     var mainhtml =thats!=''?  centermenus.baseall(hash):"";
                     $('.panel-body').html(mainhtml);
-                    if (datatiele==1){
-                        var xtop=$(this).offset().top;
-                        app.leftsecm(hash);
+                    if (datatiele==1&&thats==''){
+                        $('div.left-menu-secm').show();
+                        var xtop=$(this).offset().top; 
+                        $('div.left-menu-secm').css({left:'55px',top:xtop});
                         var oldhash =$('div.left-menu-secm').attr('data-list');
+                        var nhs=hash+'z';
+                        console.log(nhs);
+                        console.log(oldhash==hash)
                         if (oldhash==hash){
-                            $('div.left-menu-secm').css({left:'55px',top:xtop})
-                            $('div.left-menu-secm').toggle();
-                        }else
-                        {
-                            $('div.left-menu-secm').css({left:'55px',top:xtop})
-                            $('div.left-menu-secm').show();
-                            $('div.left-menu-secm').attr({'data-list':hash});
+                            
+                            if ($(nhs).hasClass('hide'))
+                            {
+                                $('div.left-menu-secm>div').addClass('hide');
+                                $(nhs).removeClass('hide');
+                            }else{
+                                $('div.left-menu-secm>div').addClass('hide');
+                            }
+                            
+                        }
+                        else{
+                           $('div.left-menu-secm').attr({'data-list':hash});
+                           $('div.left-menu-secm>div').addClass('hide');
+                           $(nhs).removeClass('hide');
+
                         }
 
                     }
-                    else if (datatiele==2){
+                    else if (datatiele==2&&thats==''){
                         $(hash).collapse('toggle');
+                    }else{
+                        $('div.left-menu-secm').hide();
                     }
                     
 
@@ -640,11 +640,12 @@
         })
         //顶部导航菜单
         $('ul.navbar-nav>li').on('click', function () {
-            console.log($(this))
+            //console.log($(this))
             $(this).addClass('active').siblings().removeClass('active');
         })
  
        
+                       
 
     </script>
 </body>
