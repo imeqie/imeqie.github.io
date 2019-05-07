@@ -169,9 +169,21 @@
                         </ul>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav" id="mytime">
+                    <li class="active"><a class="active"></a></li>
+                </ul>
 
             </div>
-            <div class="navbar-text navbar-right navbar-footer">当前用户: <a href="#" class="navbar-link">username</a></div>
+            <div class="navbar-text navbar-right navbar-footer">
+                当前用户: 
+                <a href="#" class="navbar-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">
+                    username
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#Exit">退出</a></li>
+                </ul>
+            </div>
         </div><!-- /.container-fluid -->
     </nav>
     <!-- 左侧侧滑菜单 55px-265px -->
@@ -203,6 +215,7 @@
 
 
     <script src="js/jquery.cookie.js"></script>
+    <script src="js/baseapp.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
     <script>
         // 菜单值库初始化
@@ -499,8 +512,9 @@
             }
         }
         //debug
-        $('.logins').hide();
-        // 获取cookie 如果没有cookie则显示登陆窗口
+        //$('.logins').hide();
+        //首页初始化
+        // 1.获取cookie 如果没有cookie则显示登陆窗口
         if ($.cookie('form_name')) {
             $('.logins').hide();
             $('.navbar-footer>a').text($.cookie('form_name'));
@@ -514,9 +528,13 @@
             window.location.reload();
         })
 
-        //首页初始化
-        //顶部导航初始化
+        
+        //2.顶部导航初始化
         var thistitle=app.topmenufuc();
+        setInterval(function(){
+            var mytime ="现在时间："+baseapp.getdate(0)+' '+baseapp.getdate(1);
+            $('#mytime>li>a').text(mytime);
+        },1000);
         //左侧菜单初始化
         $('div.left-menu').html(app.leftfuc()).attr({'data-title':1});  
         //左侧滑动菜单初始化
@@ -593,6 +611,11 @@
                     // 使用刚指定的配置项和数据显示图表。
                     myChart.setOption(option);
                     $('div.left-menu-secm').hide();
+                    break;
+                case '#Exit':
+                    $.cookie('form_name', '', { expires: -1 , path: '/' });
+                    $.cookie('form_pwd', '', { expires: -1 , path: '/' });
+                    window.location.reload();
                     break;
                 default:
                     var mainpl=app.rightmenus(hash);
