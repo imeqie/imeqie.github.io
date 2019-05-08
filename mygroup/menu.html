@@ -20,234 +20,244 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <style>
-        html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 50px 0 0 0;
-            position: absolute;
-
-        }
-
-        .left-menu {
-            width: 355px;
-            height: 100%;
-            background-color: aqua;
-            position: fixed;
-        }
-
-        .center-menu {
-
-            background-color: blue;
-            height: 100%;
-        }
-
-        .navbar-footer {
-            padding-right: 15px;
-        }
-
-        .mainrow {
-            margin-right: -15px;
-            margin-left: 40px;
-            height: 100%;
-
-        }
-
-        .panel {
-            height: 100%;
-        }
-
-        .panel-body {
-            height: 100%;
-            overflow-y: auto;
-        }
-
-        .ulaspan {
-            display: block;
-            margin-left: 16px;
-        }
-
-        div.secondm a {
-            padding-left: 30px;
-
-        }
-
-        div.logins {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            background-color: black;
-            z-index: 10000;
-            /* opacity: 0.5;
-            filter:alpha(opacity=50); */
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        div.left-menu-secm {
-            position: fixed;
-            width: 240px;
-            z-index: 9000;
-            left: 55px;
-            background: rgba(255, 255, 255, 1);
-        }
-
-        div.mycode {
-            margin: 90px auto;
-            padding: 60px;
-            width: 430px;
-            background-color: #ace;
-            border-radius: 14px;
-        }
-
-        ul.mypage {
-            margin: 0;
-        }
-
-        #picchart {
-            height: 300px;
-        }
-        .list-group{
-            margin: 0;
+        .container{
+            background-color: rgba(4, 4,4, 0.5);
         }
     </style>
 </head>
 
 <body>
-    <div class="left-menu-secm">
-
+    <div class="container">
+        <form class="row">
+           
+        </form>
     </div>
 
 
     <script>
-        var app = {
-            leftmenus: {
-                "#Home": { 
-                    name: "首页", icon:"glyphicon-home",pdm: {} 
-                },
-                "#system": {
-                    name: "系统设置", icon:"glyphicon-cog", pdm: {
-                        "#user": { name: "用户管理", icon:"glyphicon-user" },
-                        "#role": { name: "角色管理", icon:"glyphicon-edit" },
-                        "#systemver": { name: "系统版本", icon:"glyphicon-credit-card" }
-                    }
-                },
-                "#machine": {
-                    name: "设备管理", icon:"glyphicon-book",pdm: {
-                        "#machinelist": {name:"设备信息列表", icon:"glyphicon-menu-hamburger"},
-                        "#goods": {name:"产品信息", icon:"glyphicon-list-alt"},
-                        "#goodsclass": {name:"产品分类", icon:"glyphicon-random"}
-                    }
-                },
-                "#report": {
-                    name: "数据报表", icon:"glyphicon-folder-open",pdm: {
-                        "#salereport": {name:"销售订单列表", icon:"glyphicon-shopping-cart"},
-                        "#customer": {name:"会员列表", icon:"glyphicon-headphones"},
-                        "#paylist": {name:"支付账单", icon:"glyphicon-yen"}
-                    }
-                },
-                "#transaction": {
-                    name: "业务处理", icon:"glyphicon-pencil",pdm: {
-                        "#instore": {name:"进货处理", icon:"glyphicon-log-in"},
-                        "#outstore": {name:"出库处理", icon:"glyphicon-log-out"},
-                        "#putshelves": {name:"上架处理", icon:"glyphicon-object-align-bottom"},
-                        "#stock": {name:"库存列表", icon:"glyphicon-object-align-vertical"}
-                    }
-                }  
+        var centermenus = {
+            Home: function () {
+                var mainhtml = `<div class="row">
+                        <div class="col-xs-12 col-sm-6  col-md-6 col-lg-5">
+                            <div class="well">
+                                <p class="text-center h2">今日简报</p>
+                                <ul class="list-group">
+                                    <li class="list-group-item">设备总数：1023</li>
+                                    <li class="list-group-item">会员总数：43</li>
+                                    <li class="list-group-item">销售金额：30023.00元</li>
+                                    <li class="list-group-item">TOP1金额：340.00元</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="picchart" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                
+                        </div>
+                    </div>`;
+                return mainhtml;
             },
-            leftfuc: function() {
-                var conhtml = "";
-                var that = this.leftmenus
-                for (k in that) {
-
-                    let newk = that[k].pdm;
-                    conhtml += '<a href="' + k + '" class="list-group-item"  data-toggle="' + k.replace('#', '') + '">'; 
-                    conhtml += '<i class="glyphicon '+that[k].icon+'"></i>';
-                    conhtml += '<span class="ulaspan">' + that[k].name + '</span></a>';
-                    if (JSON.stringify(newk) != '{}') {
-                        conhtml += '<div class="collapse" id="' + k.replace('#', '') + '">';
-                        conhtml += '<div class="list-group sec">';
-                        for (ks in newk) {
-                            conhtml += '<a href="' + ks + '" class="list-group-item">';
-                            // conhtml += '<i class="glyphicon '+ newk[ks].icon+'"></i>';
-                            // conhtml += '<span class="ulaspan">' + newk[ks].name + '</span></a>';
-                            conhtml +=newk[ks].icon+ks+" </a>";
-                        }
-                        conhtml += '</div>';
-                        conhtml += '</div>';
-                    }
-
-                }
+            inputgp:function(obj){
+                //输入框，默认的构架是，输入框的显示名称，输入框的提示内容，输入框的form的序列化名字。
+                var name=obj.name;
+                var placeholder=obj.placeholder;
+                var inputname=obj.inputname;
+                return  `<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" >`+name+`</span>
+                        <input type="text" class="form-control" placeholder="`+placeholder+`"  name =`+inputname+`>
+                    </div>
+                </div>`;
+                
+            },
+            inputsub:function(obj){
+                var name=obj.name;
+                return  `<div class="col-lg-offset-10 col-lg-2 col-md-offset-10 col-md-2 col-sm-offset-10 col-sm-2 col-xs-offset-10 col-xs-2">
+                    <button type="button"  name="objsub" class="btn btn-default btn-block">`+obj.name+`</button>
+                </div>`;
+                
+            },
+            daterange:function(){
+                var conhtml =`<div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" >开始日期</span>
+                        <input type="date" class="form-control" name ="bgdate">
+                        <span class="input-group-addon" >~</span>
+                        <span class="input-group-addon" >结束日期</span>
+                        <input type="date" class="form-control" name ="enddate">
+                    </div>
+                </div>`;
                 return conhtml;
             },
-            leftsecm:function(menuname){
-                var conhtml = "";
-                var that = this.leftmenus
-                for (k in that) {
-                    let newk = that[k].pdm;
+            baseall: function (hash) {
+                var menuscont=new Array();
+                menuscont['#user']={
                     
-                    if (JSON.stringify(newk) != '{}') {
-                        conhtml+=(menuname==k)?'<div class="list-group sec" data-list="'+k+'">':'<div class="list-group sec hide" data-list="'+k+'">';
-                        
-                        for (ks in newk) {
-                            conhtml += '<a href="' + ks + '" class="list-group-item">';
-                            conhtml +='<i class="glyphicon '+newk[ks].icon+'"></i>';
-                            conhtml += '<span class="ulaspan">' + newk[ks].name + '</span></a>';
-                            conhtml += '</a>' ;
-                        }
-                        conhtml += '</div>';
-                        
+                    UserId:{
+                        name:'用户编号',
+                        placeholder:'输入用户编号',
+                        inputname:'UserId'
+                    },
+                    Username:{
+                        name:'用户姓名',
+                        placeholder:'输入用户姓名',
+                        inputname:'Username'
+                    },
+                    Usermob:{
+                        name:'用户手机',
+                        placeholder:'输入手机号码',
+                        inputname:'Usermob'
+                    },
+                    daterange:{},
+                    subname:{
+                        name:'检索'
                     }
-                   
-                }
-                return conhtml;
-            }
-        };
-        
-        // var comhtml=app.leftfuc();
-        // console.log(comhtml);
-        $('.left-menu-secm').html(app.leftsecm('#system'))
-        $('ul li').on('click', function () {
-            console.log($(this))
-            $(this).addClass('active').siblings().removeClass('active');
-        })
-        $('.left-menu>div').html(app.leftfuc())
-        $('a').on('click', function () {
-            $(this).parent('li').addClass('active').siblings().removeClass('active');
-            var hash = $(this)[0].hash;
-            //console.log(hash)
-            $(hash).collapse('toggle');
+                };
 
-        })
 
-       // console.log(app.leftmenus['#user'])
-        if (app.leftmenus['#user'])
-        {
-            console.log(app.leftmenus['#user'])
-        }else{
-
-        }
-        var ts={};
-        for (k in app.leftmenus)
-        {
-            ts[k]="";
-            for(ks in app.leftmenus[k].pdm)
-            {
-                //console.log(ks+ k)
-                ts[ks]=k;
-            }
+                
+                var mainhtml = `<div class="well"><p class="h3">条件区域</p>`;
+                mainhtml += `<div class="row">`;
+                    for (k in menuscont[hash])
+                    {
+                        if (k=='subname')
+                        {
+                            mainhtml += this.inputsub(menuscont[hash][k]);
+                        }else if (k=='daterange'){
+                            mainhtml += this.daterange(menuscont[hash][k]); 
+                        }
+                        else{
+                            mainhtml += this.inputgp(menuscont[hash][k]); 
+                        }
+                    }
             
-        }
-        console.log(ts);
+                mainhtml += `</div>`;
+                mainhtml += `<table class="table table-condensed table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>Column heading</th>
+                                        <th>Column heading</th>
+                                        <th>Column heading</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active">
+                                        <th scope="row">1</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="success">
+                                        <th scope="row">3</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">4</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="info">
+                                        <th scope="row">5</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">6</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="warning">
+                                        <th scope="row">7</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">8</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                        <tr class="danger">
+                                        <th scope="row">9</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination mypage">
+                                    <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                                <ul class="pagination mypage">
+                                    <li>
+                                    <a href="#"><span aria-hidden="true">总行数:100 |</span><span aria-hidden="true">每页显示行数：</span>
+                                        <select>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </a>
+                                    </li>
+                                    <li>
+                                    <a href="#"><span aria-hidden="true">总页数:4 |</span><span aria-hidden="true">转到：</span>
+                                        <select>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </a>
+                                    </li>
+                                    
+                                </ul>`;
+                mainhtml += `</div>`;
+                return mainhtml;
 
+            },
+            formToJson:function(data){
+                var data=decodeURIComponent(data,true);//防止中文乱码
+                
+                data=data.replace(/&/g,"\",\"");
+                data=data.replace(/=/g,"\":\"");
+                data="{\""+data+"\"}";
+                return data;
+            }
+        }
+
+
+        $('.row').html(centermenus.baseall('#user'));
+        $('button[name="objsub"]').on('click',function(){
+           
+        })
+        
     </script>
 </body>
 
