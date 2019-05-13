@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="驿氪数据会员报表">
+    <meta name="keywords" content="from bootstrap and jquery">
+    <meta name="author" content="Clark.King/from everyone">
+    <title>驿氪数据会员报表</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 53px 0 0 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        div.logins {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-color: black;
+            z-index: 10000;
+            /* opacity: 0.5;
+            filter:alpha(opacity=50); */
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        div.mycode {
+            margin: 90px auto;
+            padding: 60px;
+            width: 430px;
+            background-color: #ace;
+            border-radius: 14px;
+        }
+
+        ul.pagination {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logins">
+        <div class="mycode text-center">
+            <h1>登陆</h1>
+            <form class="innerform">
+                <div class="form-group">
+                    <label for="form_name" class="h4">用户名</label>
+                    <input type="text" class="form-control" name="form_name" placeholder="手机号/用户名/邮箱">
+                </div>
+                <div class="form-group">
+                    <label for="form_pwd" class="h4">密码</label>
+                    <input type="password" class="form-control" name="form_pwd" placeholder="密码">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="displaypwd"> 显示密码
+                    </label>
+                </div>
+                <button type="button" id="loginsys" class="btn btn-default btn-block">登陆</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal">
+    </div>
+    <div class="mainpage">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">玛丽黛佳</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#Home">玛丽黛佳</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#vipreport">会员复购报表 <span class="sr-only">(current)</span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">其他报表 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#none">暂时还没有</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="active"><a href="#time" class="mytime"></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false"><span id="usershow">用户</span> <span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">退出</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><span class="hdtitle">首页</span> </div>
+                <div class="panel-body">
+                    首页空白
+                </div>
+                <table class="table">
+                    ...
+                </table>
+                <div class="panel-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = {
+            getdate: function (num) {
+                //关于日期
+                var myDate = new Date();
+                var yyyy = myDate.getFullYear();
+                var mm = myDate.getMonth() + 1;
+                var dd = myDate.getDate();
+                switch (num) {
+                    case 0:
+                        //当天 2019-02-18
+                        mm = mm < 10 ? '0' + mm : mm;
+                        dd = dd < 10 ? '0' + dd : dd;
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 1:
+                        //此刻 14:11:15
+                        return myDate.toLocaleTimeString();
+                        break;
+                    case 2:
+                        //当月有几天 
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate() < 10 ? '0' + fristDay.getDate() : fristDay.getDate();
+                        return dd;
+                        break;
+                    case 3:
+                        //当月第一天
+                        mm = mm < 10 ? '0' + mm : mm;
+                        var lastDay = new Date(yyyy, mm, 1);
+                        dd = lastDay.getDate() < 10 ? '0' + lastDay.getDate() : lastDay.getDate();
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 4:
+                        //当月最后一天
+                        mm = mm < 10 ? '0' + mm : mm;
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate() < 10 ? '0' + fristDay.getDate() : fristDay.getDate();
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 5:
+                        //上月第一天
+                        mm = mm - 1;
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy;
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);
+                        var lastDay = new Date(yyyy, mm, 1);
+                        dd = '0' + lastDay.getDate(); //获取第一天，所以不需要判断，直接0+1
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 6:
+                        //上月最后一天
+                        mm = mm - 1;
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy;
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate(); //获取最后一天，所以不需要加0前缀
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 7:
+                        //最近七天
+
+                        console.log('最近七天');
+                        dd = dd - 7;
+                        //console.log(dd);
+                        mm = (dd < 1 ? mm = mm - 1 : mm); //当日期-7 产生负数，月份自动减1.
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy; //如果月份减1等于0，年份减1.
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);//月份等于0，自动变成12月份.
+                        console.log(mm);
+                        nday = this.getdate(8) + dd; //获取上月的天数+最近七天的差额
+                        console.log(nday);
+                        dd = (dd < 1 ? nday : ((dd < 10) ? '0' + dd : dd));
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 8:
+                        //上月有几天
+                        mm = mm - 1;
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy;
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate(); //获取最后一天，所以不需要加0前缀
+                        return dd;
+                        break;
+                    case 11:
+                        //昨天
+
+                        console.log('昨天');
+                        dd = dd - 1;
+                        //console.log(dd);
+                        mm = (dd < 1 ? mm = mm - 1 : mm); //当日期-7 产生负数，月份自动减1.
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy; //如果月份减1等于0，年份减1.
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);//月份等于0，自动变成12月份.
+                        console.log(mm);
+                        nday = this.getdate(8) + dd; //获取上月的天数+最近七天的差额
+                        console.log(nday);
+                        dd = (dd < 1 ? nday : ((dd < 10) ? '0' + dd : dd));
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 12:
+                        //前天
+
+                        console.log('前天');
+                        dd = dd - 2;
+                        //console.log(dd);
+                        mm = (dd < 1 ? mm = mm - 1 : mm); //当日期-7 产生负数，月份自动减1.
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy; //如果月份减1等于0，年份减1.
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);//月份等于0，自动变成12月份.
+                        console.log(mm);
+                        nday = this.getdate(8) + dd; //获取上月的天数+最近七天的差额
+                        console.log(nday);
+                        dd = (dd < 1 ? nday : ((dd < 10) ? '0' + dd : dd));
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    default:
+                        // 年月日时分秒2019-2-18 14:13:10 缺点 月份和日期不补零
+                        return myDate.toLocaleString();
+                        break;
+                };
+
+            },
+            toajax: function (urls, codes, contents) {
+                //关于 ajax
+                let res = "";
+                $.ajax({
+                    type: "POST",
+                    url: urls,
+                    data: { "code": codes, "content": contents },
+                    async: false,
+                    //dataType: "json",
+                    success: function (message, status) {
+                        res = message;
+                    },
+                    error: function (message, status, errorThrown) { res = ({ "returnCode": 404, "returnMsg": "链接失败！" }) },
+                    compile: function (message) { res = message }
+                });
+                return res;
+            },
+            log: function (log) {
+                console.log(log);
+            },
+            Storage: {
+                get: function (name) {
+                    //获取key的值
+                    return JSON.parse(localStorage.getItem(name));
+                },
+                set: function (name, val) {
+                    //设置KEY value
+                    localStorage.setItem(name, JSON.stringify(val));
+                },
+                add: function (name, addVal) {
+                    //添加KEY的 value 的内容
+                    var oldVal = this.get(name);
+                    var newVal = oldVal.concat(addVal);
+                    this.set(name, newVal);
+                },
+                rem: function (name) {
+                    //删除指定的key
+                    localStorage.removeItem(name);
+                },
+                cls: function () {
+                    //删除所有的
+                    localStorage.clear();
+                }
+            }
+        }
+
+        var comm = {
+            pagination: function () {
+                var conhtml = `<ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>`;
+                return conhtml;
+            },
+            setpage: function (hash) {
+                switch (hash) {
+                    case '#Home':
+                        $('div.panel-body').html('首页空白');
+                        $('table.table').html('...');
+                        app.log(this["pagination"])
+                        $('div.panel-footer').html(this.pagination);
+                        break;
+                    case '#vipreport':
+                        var ys = ['2018', '2019', '2020'];
+                        inputgp = `<form class="form-inline report">
+                                    <div class="form-group">
+                                        <label  for="timechs">时间选择器</label>
+                                        <div class="input-group">
+                                        <div class="input-group-addon">年份</div>
+                                        <select class="form-control" id="xsj1" aria-describedby="add1">`;
+                        for (let i = 0; i < ys.length; i++) {
+                            inputgp += `<option>` + ys[i] + `</option>`;
+                        }
+                        inputgp += ` </select>
+                                        <div class="input-group-addon">月份</div>
+                                        <select class="form-control" id="xsj2" aria-describedby="add2">`;
+                        for (let j = 1; j <= 12; j++) {
+                            inputgp += j < 10 ? `<option>0` + j + `</option>` : `<option>` + j + `</option>`;
+                        }
+                        inputgp += ` </select> 
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="select">查询</button>
+                                    <button type="button" class="btn btn-info"  id="download">下载</button>
+                                    </form>`;
+
+                        $('div.panel-body').html(inputgp);
+                        $('table.table').html('...');
+                        $('div.panel-footer').html("");
+                        break;
+                }
+
+            }
+
+        }
+        $(function () {
+            setInterval(function () {
+                var mytime = "现在时间：" + app.getdate(0) + ' ' + app.getdate(1);
+                $('a.mytime').text(mytime);
+            }, 1000);
+            if (app.Storage.get('form_name')) {
+                $('.logins').hide();
+                $('#usershow').text(app.Storage.get('form_name'));
+            }
+            // 登陆进行处理--当前尚未校验
+            $('#loginsys').on('click', function () {
+                let contents = $("form.innerform").serializeArray();
+                app.log(contents);
+                app.Storage.set('form_name', contents[0].value, { expires: 0.1 });
+                app.Storage.set('form_pwd', contents[1].value, { expires: 0.1 });
+                window.location.reload();
+            });
+            var res="";
+            $('a').on('click', function () {
+                var hash = $(this)[0].hash;
+                hash = hash == "" ? "#" : hash;
+                var name = {
+                    "#": "首页", "#none": "空白尚未做", "#vipreport": "会员复购报表"
+                }
+                $('span.hdtitle').text(name[hash])
+                comm.setpage(hash)
+
+                //    mylog(hash)
+                switch (hash) {
+                    case '#':
+                        break;
+                    case '#Home':
+                        break;
+                    case '#none':
+                        break;
+                    case '#vipreport':
+                    var cons={
+                        ys:$('select').eq(0).val(),
+                        ms:$('select').eq(1).val()
+                    };
+                    $('#select').on('click',function(){
+                        app.log(this);
+                        app.log(cons);
+                        res=app.toajax('ezrfind.php','ezrfind',cons)
+                    })
+                    $('#download').on('click',function(){
+                        app.log(this);
+                        //app.toajax('','')
+                    })
+                        break;
+                }
+                
+            });
+
+           
+
+        })
+    </script>
+</body>
+
+</html>
