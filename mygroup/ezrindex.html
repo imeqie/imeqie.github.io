@@ -53,6 +53,18 @@
         ul.pagination {
             margin: 0;
         }
+		.abouttable{
+			overflow:auto;
+			height:100%;
+
+		}
+		.abouttable1::-webkit-scrollbar {
+			display: none;
+		}
+		th{
+		white-space: nowrap;
+		}
+		
     </style>
 </head>
 
@@ -116,6 +128,8 @@
                             </ul>
                         </li>
                         <li class="active"><a href="#time" class="mytime"></a></li>
+						<li><a href="#chang"><i class="glyphicon glyphicon-fullscreen"></i></a></li>
+						
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -131,17 +145,18 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <div class="container">
+        <div class="pand container">
             <div class="panel panel-primary">
                 <div class="panel-heading"><span class="hdtitle">首页</span> </div>
                 <div class="panel-body">
                     首页空白
                 </div>
+				<div class="abouttable">
                 <table class="table table-hover">
                     <thead></thead>
                     <tbody></tbody>
                 </table>
-
+				<div>
                 <div class="panel-footer">
 
                 </div>
@@ -472,8 +487,6 @@
                 }
                 $('span.hdtitle').text(name[hash])
                 comm.setpage(hash)
-
-                //    mylog(hash)
                 switch (hash) {
                     case '#':
                         break;
@@ -481,13 +494,24 @@
                         break;
                     case '#none':
                         break;
+					case '#chang':
+                    console.log(hash)
+                    if ($('div.pand').hasClass('container'))
+                    {
+                        $('div.pand').removeClass('container').addClass('container-fluid') ;
+                    }else
+                    {
+                        $('div.pand').removeClass('container-fluid').addClass('container') ;
+                    }
+					
+						break;
                     case '#Exit':
                         app.Storage.rem('form_name');
                         app.Storage.rem('form_pwd');
                         window.location.reload();
                         break;
                     case '#vipreport':
-                        var cons = {
+                        var convs = {
                             ys: $('#xsj1').val(),
                             ms: $('#xsj2').val()
                         };
@@ -499,13 +523,14 @@
                             };
                             $('div.modal-content').html(comm.pagemodel(cons));
                             $('#myModal').modal('show');
-                            res = app.toajax('php/ezrfind.php', 'ezrfind', cons);
+                            res = app.toajax('php/ezrfind.php', 'ezrfind', convs);
+							console.log(res);
                             rest = eval('(' + res + ')');
                             if (rest.returnCode == 0) {
                                 var data = rest.returnContent;
-                                setTimeout(function(){ $('#myModal').modal('hide'); }, 3000);
-                        
+                                 setTimeout(function(){ $('#myModal').modal('hide'); }, 1000);
                                 
+                                console.log(data);
                                 var result = [];
                                 var nums = $('#selectshowrows').val();
                                 for (let i = 0; i < data.length; i += parseInt(nums)) {
@@ -513,7 +538,7 @@
                                 };
 
                                 var rt = result[0];
-                                let tableth = '<tr>'; //表列名
+                                let tableth = '<tr class="info">'; //表列名
                                 // 建立列信息
                                 Object.keys(rt[0]).forEach(
                                     function (item, index) {
