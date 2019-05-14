@@ -14,6 +14,7 @@
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/mylay.css">
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
@@ -35,7 +36,7 @@
             height: 100%;
             display: block;
             background-color: black;
-            z-index: 10000;
+            z-index: 100;
             /* opacity: 0.5;
             filter:alpha(opacity=50); */
             background: rgba(0, 0, 0, 0.5);
@@ -56,6 +57,14 @@
 </head>
 
 <body>
+     
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+            </div>
+        </div>
+    </div>
     <div class="logins">
         <div class="mycode text-center">
             <h1>登陆</h1>
@@ -77,8 +86,8 @@
             </form>
         </div>
     </div>
-    <div class="modal">
-    </div>
+
+
     <div class="mainpage">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -114,7 +123,7 @@
                                 aria-haspopup="true" aria-expanded="false"><span id="usershow">用户</span> <span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">退出</a></li>
+                                <li><a href="#Exit">退出</a></li>
 
                             </ul>
                         </li>
@@ -128,15 +137,19 @@
                 <div class="panel-body">
                     首页空白
                 </div>
-                <table class="table">
-                    ...
+                <table class="table table-hover">
+                    <thead></thead>
+                    <tbody></tbody>
                 </table>
+
                 <div class="panel-footer">
 
                 </div>
             </div>
         </div>
     </div>
+    <script src="js/jqPaginator.js"></script>
+    <script src="js/JsonExportExcel.min.js"></script>
     <script>
         var app = {
             getdate: function (num) {
@@ -145,6 +158,9 @@
                 var yyyy = myDate.getFullYear();
                 var mm = myDate.getMonth() + 1;
                 var dd = myDate.getDate();
+                var h = myDate.getHours();
+                var m = myDate.getMinutes();
+                var s = myDate.getSeconds();
                 switch (num) {
                     case 0:
                         //当天 2019-02-18
@@ -155,7 +171,10 @@
                         break;
                     case 1:
                         //此刻 14:11:15
-                        return myDate.toLocaleTimeString();
+                        h = h < 10 ? '0' + h : h;
+                        m = m < 10 ? '0' + m : m;
+                        s = s < 10 ? '0' + s : s;
+                        return h + ':' + m + ':' + s;
                         break;
                     case 2:
                         //当月有几天 
@@ -256,6 +275,15 @@
                         ymd = yyyy + '-' + mm + '-' + dd;
                         return ymd;
                         break;
+                    case 33:
+                        mm = mm < 10 ? '0' + mm : mm;
+                        dd = dd < 10 ? '0' + dd : dd;
+
+                        h = h < 10 ? '0' + h : h;
+                        m = m < 10 ? '0' + m : m;
+                        s = s < 10 ? '0' + s : s;
+                        return yyyy + mm + dd + h + m + s;
+                        break;
                     default:
                         // 年月日时分秒2019-2-18 14:13:10 缺点 月份和日期不补零
                         return myDate.toLocaleString();
@@ -311,30 +339,36 @@
 
         var comm = {
             pagination: function () {
-                var conhtml = `<ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
+                var conhtml = `<ul class="pagination leftpagin">
+                        <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
+                        <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                     </ul>`;
+                conhtml += `<ul class="pagination rightpagin">
+						<li class="showcols"><a>总600行</a></li>
+						<li class="showpages"><a>共9页</a></li>
+						<li class="showrows"><a>显示
+							<select  id="selectshowrows">
+								<option>10</option>
+								<option>25</option>
+								<option>50</option>
+								<option>100</option>
+							</select>
+						行</a></li>
+						<li class="showbtnchange"><a href="#tochangepage" >更改</a></li>						
+						</ul>`;
                 return conhtml;
             },
             setpage: function (hash) {
                 switch (hash) {
                     case '#Home':
                         $('div.panel-body').html('首页空白');
-                        $('table.table').html('...');
+                        $('table.table>thead').html('<tr>...</tr>');
+                        $('table.table>tbody').html('<tr>...</tr>');
                         app.log(this["pagination"])
                         $('div.panel-footer').html(this.pagination);
                         break;
@@ -363,14 +397,45 @@
                                     </form>`;
 
                         $('div.panel-body').html(inputgp);
-                        $('table.table').html('...');
-                        $('div.panel-footer').html("");
+                        $('table.table>thead').html('<tr>...</tr>');
+                        $('table.table>tbody').html('<tr>...</tr>');
+
+                        $('div.panel-footer').html(this.pagination());
                         break;
                 }
+
+            },
+            pagemodel:function(cons){
+                var conhtml ='';
+                if (cons.titlename!=''){
+                    conhtml+=`<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">`+cons.titlename+`</h4>
+                    </div>`;
+                }
+                if (cons.body !=''){
+                    conhtml+=`<div class="modal-body">`+cons.body+`</div>`;
+                }
+                
+                if (cons.footer=='noDo'){
+                    conhtml+=`<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">确认</button>
+                </div>`;
+                }else if  (cons.footer=='noExit'){
+                    conhtml+=`<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>`;
+                }
+               
+                
+                return conhtml;
 
             }
 
         }
+        var pwd = { 'wangyq': '123456', 'admin': '123456' };
         $(function () {
             setInterval(function () {
                 var mytime = "现在时间：" + app.getdate(0) + ' ' + app.getdate(1);
@@ -383,12 +448,22 @@
             // 登陆进行处理--当前尚未校验
             $('#loginsys').on('click', function () {
                 let contents = $("form.innerform").serializeArray();
-                app.log(contents);
-                app.Storage.set('form_name', contents[0].value, { expires: 0.1 });
-                app.Storage.set('form_pwd', contents[1].value, { expires: 0.1 });
-                window.location.reload();
+                if (pwd[contents[0].value] == contents[1].value) {
+                    app.Storage.set('form_name', contents[0].value, { expires: 0.1 });
+                    app.Storage.set('form_pwd', contents[1].value, { expires: 0.1 });
+                    window.location.reload();
+                } else {
+					var cons={
+                        titlename:'提示框',
+                        body:'用户名或者密码错！请重新输入！',
+                        footer:'noExit'
+                    };
+					$('div.modal-content').html(comm.pagemodel(cons));
+                    $('#myModal').modal('show')
+                }
+
             });
-            var res="";
+            var res = "";
             $('a').on('click', function () {
                 var hash = $(this)[0].hash;
                 hash = hash == "" ? "#" : hash;
@@ -406,28 +481,126 @@
                         break;
                     case '#none':
                         break;
+                    case '#Exit':
+                        app.Storage.rem('form_name');
+                        app.Storage.rem('form_pwd');
+                        window.location.reload();
+                        break;
                     case '#vipreport':
-                    var cons={
-                        ys:$('select').eq(0).val(),
-                        ms:$('select').eq(1).val()
-                    };
-                    $('#select').on('click',function(){
-                        app.log(this);
-                        app.log(cons);
-                        res=app.toajax('ezrfind.php','ezrfind',cons)
-                    })
-                    $('#download').on('click',function(){
-                        app.log(this);
-                        //app.toajax('','')
-                    })
+                        var cons = {
+                            ys: $('#xsj1').val(),
+                            ms: $('#xsj2').val()
+                        };
+                        $('#select').on('click', function () {
+                            var cons={
+                                titlename:'<div class="loading"><span></span><span></span><span></span><span></span><span></span></div>',
+                                body:'',
+                                footer:''
+                            };
+                            $('div.modal-content').html(comm.pagemodel(cons));
+                            $('#myModal').modal('show');
+                            res = app.toajax('php/ezrfind.php', 'ezrfind', cons);
+                            rest = eval('(' + res + ')');
+                            if (rest.returnCode == 0) {
+                                var data = rest.returnContent;
+                                setTimeout(function(){ $('#myModal').modal('hide'); }, 3000);
+                        
+                                
+                                var result = [];
+                                var nums = $('#selectshowrows').val();
+                                for (let i = 0; i < data.length; i += parseInt(nums)) {
+                                    result.push(data.slice(i, i + parseInt(nums)));
+                                };
+
+                                var rt = result[0];
+                                let tableth = '<tr>'; //表列名
+                                // 建立列信息
+                                Object.keys(rt[0]).forEach(
+                                    function (item, index) {
+                                        tableth += '<th>' + item + '</th>';
+                                    }
+                                );
+                                tableth += '</tr>';
+
+                                let tabletds = new Array();
+
+                                let rpage = result.length;
+                                console.log(rpage)
+                                for (let reslen = 0; reslen < rpage; reslen++) {
+                                    let restd = result[reslen];
+                                    let tabletd = ''; //表明细
+                                    for (let ij = 0; ij < restd.length; ij++) {
+                                        tabletd += '<tr>';
+                                        let tds = restd[ij];
+                                        Object.keys(tds).forEach(
+                                            function (item, index) {
+                                                tabletd += '<td>' + tds[item] + '</td>';
+                                            }
+                                        );
+                                        tabletd += '</tr>';
+
+                                    }
+                                    tabletds.push(tabletd);
+                                }
+
+
+                                $('table.table>thead').html(tableth);
+                                $('table.table>tbody').html(tabletds[0]);
+                                $('.showcols>a').html('总' + data.length + '行');
+                                $('.showpages>a').html('共' + rpage + '页');
+                                $.jqPaginator('.leftpagin', {
+                                    totalPages: parseInt(rpage),//总页数 
+                                    visiblePages: 5,//同时显示li数
+                                    currentPage: 1,//默认显示 第几页 
+                                    prev: '<li class="prev"><a href="javascript:;"><</a></li>',
+                                    next: '<li class="next"><a href="javascript:;">></a></li>',
+                                    page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+                                    onPageChange: function (num, type) {
+                                        let tdsnum = num - 1;
+                                        $('table.table>tbody').html(tabletds[tdsnum]);
+                                    }
+                                });
+                                $('li.showbtnchange').on('click', function () {
+                                    $('#select').click();
+                                })
+                            }
+                        })
+                        $('#download').on('click', function () {
+                            
+                            res = app.toajax('php/ezrfind.php', 'ezrfind', cons);
+                            rest = eval('(' + res + ')');
+                            if (rest.returnCode == 0) {
+                                let rt = rest.returnContent;
+                                let obj = rt[0];
+                                let ths = [];
+                                Object.keys(obj).forEach(function (key) {
+                                    ths.push(key);
+                                });
+
+                                console.log(ths)
+                                var option = {};
+                                option.fileName = 'salevip' + app.getdate(33);
+                                option.datas = [
+                                    {
+                                        sheetHeader: ths,
+                                        sheetFilter: ths,
+                                        sheetData: rt,
+                                        sheetName: 'salevip1'
+                                    }
+                                ];
+                                var toExcel = new ExportJsonExcel(option);
+                                toExcel.saveExcel();
+                            }
+                        })
                         break;
                 }
-                
+
             });
 
-           
+
 
         })
+		//http://pos1.mariedalgar.com/myweb/ezrindex.html
     </script>
 </body>
 
