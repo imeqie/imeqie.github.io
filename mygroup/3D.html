@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>3D轮播图</title>
+    <style>
+        body{margin:0;padding:0;}
+        .cube{
+            width: 800px;
+            height: 600px;
+            -webkit-perspective: 1000px;
+            margin:150px auto 0 auto;
+            position: relative;
+        }
+        .ant{
+            width: 200px;
+            height: 100%;
+            display: block;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform: translate3d(0,0,-400px);
+            position:absolute;
+        }
+
+        .ant-1{left: 0px;}
+        .ant-2{left: 200px;}
+        .ant-3{left: 400px;}
+        .ant-4{left: 600px;}
+        .ant-1 img{left: 0px;}
+        .ant-2 img{left: -200px;}
+        .ant-3 img{left: -400px;}
+        .ant-4 img{left: -600px;}
+
+        .face{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            border:1px solid;
+        }
+        .face img{
+            display: block;
+            width: 800px;
+            height: 100%;
+            position: absolute;
+        }
+        .face-top{
+            -webkit-transform: translate3d(0,-300px,0px) rotateX(90deg);
+        }
+        .face-bottom{
+            -webkit-transform: translate3d(0,300px,0px) rotateX(-90deg);
+        }
+        .face-in{
+            -webkit-transform: translate3d(0,0,-300px) rotateX(180deg);
+        }
+        .face-out{
+            -webkit-transform: translate3d(0,0,300px) rotateX(0deg);
+        }
+        .face-left{
+            background-color: #999;
+            width: 600px;
+            -webkit-transform: translate3d(-300px,0,0px) rotateY(90deg);
+        }
+        .face-right{
+            background-color: #999;
+            width: 600px;
+            -webkit-transform: translate3d(-100px,0,0px) rotateY(-90deg);
+        }
+    
+        .Animate{
+            animation:xuanzhuan 10s infinite linear;
+            -webkit-animation:xuanzhuan 10s infinite linear;
+        }
+        @keyframes xuanzhuan{
+            0%{
+                -webkit-transform: translate3d(0,0,-400px) rotateX(0deg);
+            }
+            50%{
+                -webkit-transform: translate3d(0,0,-400px) rotateX(-360deg);
+            }
+            100%{
+                -webkit-transform: translate3d(0,0,-400px) rotateX(0deg);
+            }
+        }
+        @-webkit-keyframes xuanzhuan{
+            0%{
+                -webkit-transform: translate3d(0,0,-400px) rotateX(0deg);
+            }
+            50%{
+                -webkit-transform: translate3d(0,0,-400px) rotateX(-360deg);
+            }
+            100%{
+                -webkit-transform: translate3d(0,0,-400px) rotateX(0deg);
+            }
+        }
+    </style>
+    <script>
+        var PIC_NUM = 5; //图片分成的块数
+        window.onload = function(){
+            var index = 1;
+            document.querySelector(".ant-"+index).className += " Animate";
+            setTimeout(function(){
+                index++;
+                document.querySelector(".ant-"+index).className += " Animate";
+                setTimeout(function(){
+                    index++;
+                    document.querySelector(".ant-"+index).className += " Animate";
+                    setTimeout(function(){
+                        index++;
+                        document.querySelector(".ant-"+index).className += " Animate";
+                    },600)
+                },600)
+            } , 600);
+        }
+    </script>
+</head>
+<body>
+    <ul class="cube">
+        <li class="ant ant-1">
+            <div class="face face-top">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-bottom">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-left"></div>
+            <div class="face face-right"></div>
+            <div class="face face-in">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-out">
+                <img src="image/face-in.png" alt="" />
+            </div>
+        </li>
+        <!-- <li class="ant ant-2">
+            <div class="face face-top">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-bottom">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-left"></div>
+            <div class="face face-right"></div>
+            <div class="face face-in">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-out">
+                <img src="image/face-in.png" alt="" />
+            </div>
+        </li>
+        <li class="ant ant-4">
+            <div class="face face-top">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-bottom">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-left"></div>
+            <div class="face face-right"></div>
+            <div class="face face-in">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-out">
+                <img src="image/face-in.png" alt="" />
+            </div>
+        </li>
+        <li class="ant ant-3">
+            <div class="face face-top">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-bottom">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-left"></div>
+            <div class="face face-right"></div>
+            <div class="face face-in">
+                <img src="image/face-in.png" alt="" />
+            </div>
+            <div class="face face-out">
+                <img src="image/face-in.png" alt="" />
+            </div>
+        </li> -->
+    </ul>
+</body>
+</html>

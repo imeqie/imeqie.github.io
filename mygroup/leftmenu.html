@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="author" content="Mattia Larentis, Emanuele Marchi and Peter Stein">
+    <title>登陆注册页面</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">连接信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="dbinfo">
+                        <div class="form-group">
+                            <label for="DBname" class="control-label">连接名称</label>
+                            <input type="text" class="form-control" name="DBname">
+                        </div>
+                        <div class="form-group">
+                            <label for="IPadd" class="control-label">主机或IP地址:</label>
+                            <input type="text" class="form-control" name="IPadd">
+                        </div>
+                        <div class="form-group">
+                            <label for="DBuser" class="control-label">用户名:</label>
+                            <input type="text" class="form-control" name="DBuser">
+                        </div>
+                        <div class="form-group">
+                            <label for="DBpwd" class="control-label">密码:</label>
+                            <input type="text" class="form-control" name="DBpwd">
+                        </div>
+                        <button type="button" id="dblink" class="btn btn-primary">连接测试</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" id="dbsave" class="btn btn-primary">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">数据库连接工具</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">选择连接 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#SQLSERVER">SQLSERVER</a></li>
+                            <li><a href="#MYSQL">MYSQL</a></li>
+
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#Oracle">Oracle</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#sqlite">sqlite</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="glyphicon glyphicon-signal"></i></a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-signal"></i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">用户名称 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#Exit">退出</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="left-menu">
+    </div>
+
+    <script>
+        var app={
+            formToJson: function (data) {
+                data= decodeURIComponent(data,true);//防止中文乱码
+                data=data.replace(/&/g,"\",\"");
+                data=data.replace(/=/g,"\":\"");
+                data="{\""+data+"\"}";
+                return data;
+            }
+        }
+        $(function () {
+            $('a').on('click', function () {
+                var hash = $(this)[0].hash;
+                hash = hash == "" ? "#" : hash;
+                switch (hash) {
+                    case '#SQLSERVER':
+                        $('#exampleModal').modal('show');
+                        break;
+                }
+            })
+
+            $('button').on('click',function(){
+                var btnid =$(this).context.id;
+                switch (btnid){
+                    case 'dblink':
+                        var arr =$('form').serialize();
+                        var formjson =app.formToJson(arr));
+
+
+                        break;
+                }
+            })
+
+        })
+
+
+    </script>
+</body>
+
+</html>

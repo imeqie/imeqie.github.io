@@ -16,26 +16,88 @@
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <style>
-        .container{
-            background-color: rgba(4, 4,4, 0.5);
+        .container {
+            background-color: rgba(4, 4, 4, 0.5);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <form class="row">
-           
+        <form class="row form-horizontal">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">userAgent:</span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+            <a class="btn btn-block btn-danger" data-toggle="tooltip" data-placement="bottom" title="关于内容的查询">查询</a>
+            <div class="neig">
+
+            </div>
+
+            <div class="jieguo">
+
+            </div>
+            
+            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom"  title="Popover title" data-template='
+            <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            '>点我弹出/隐藏弹出框</button>
+			<div class="nowservertime"></div>
+
         </form>
     </div>
 
-   
+
     <script>
-      JOSN.stringify(navigator);
+        function log(e) {
+            console.log(e);
+        }
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+            $('div.btn').on('click', function () {
+                var dyv = $("input[type='text']").val();
+                log(dyv)
+                var vals = $(".neig").text().indexOf('dyv');
+                log(vals)
+                $('div.jieguo').text(vals);
+            })
+
+            $(".neig").html(navigator.userAgent);
+			var int=self.setInterval(clock(),1001)
+            function clock(){
+                $.ajax({
+                    type:"OPTIONS",
+                    url:"/",
+                    complete:function(x){
+                        var nx= new Date(x.getResponseHeader("Date"));
+                        yyyy=nx.getFullYear();
+                        mm=nx.getMonth()+1;
+                        mm=mm<10?'0'+mm:mm;
+                        dd=nx.getDate();
+                        dd = dd < 10 ? '0' + dd : dd;
+                        hh=nx.getHours();
+                        hh = hh < 10 ? '0' + hh : hh;
+                        mi=nx.getMinutes();
+                        mi = mi < 10 ? '0' + mi : mi;
+                        ss=nx.getSeconds();
+                        ss = ss < 10 ? '0' + ss : ss;
+                        var newday= yyyy+'-'+mm+'-'+dd+' '+hh+':'+mi+':'+ss;
+                        console.log(newday);
+                    }
+                })
+            }
+        });
+        
+
     </script>
 </body>
 
