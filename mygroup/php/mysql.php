@@ -115,4 +115,11 @@ class mymain{
         mysqli_close($conn);
     }	
 }
+
+if (isset($_POST['code']))
+{
+    $code=$_POST['code'];
+    $content==$_POST['content'];
+    switch()
+}
 ?>
