@@ -198,22 +198,16 @@
                         var urls="php/mysql.php";
                         var codes="tokens="+ $('#exampleModalLabel>span').text();
                         var contents =app.formToJson(arr)   ;
-                        var restv=eval('(' + contents + ')');
-                        console.log(restv);
-                        for (k in restv)
+                        var message= app.toajax(urls,codes,contents);
+                        var rest=eval('(' + message + ')');
+                        if (rest.returnCode==0)
                         {
-                            app.Storage.set(k,restv[k]);
+                            var rt=rest.returnContent;
                         }
-                        // var message= app.toajax(urls,codes,contents);
-                        // var rest=eval('(' + message + ')');
-                        // if (rest.returnCode==0)
-                        // {
-                        //     var rt=rest.returnContent;
-                        // }
-                        // else
-                        // {
+                        else
+                        {
 
-                        // }
+                        }
 
                         break;
                 }

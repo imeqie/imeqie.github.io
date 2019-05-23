@@ -120,6 +120,17 @@ if (isset($_POST['code']))
 {
     $code=$_POST['code'];
     $content==$_POST['content'];
-    switch()
+    $tofind=str_replace("token=","",$code,$i);
+    switch($tofind)
+    {
+        case 'sqlserver':
+        echo $content;
+        break;
+        case 'mysql':
+        echo $content;
+        break;
+        default:
+        echo $i.'请求非法';  
+    }
 }
 ?>
