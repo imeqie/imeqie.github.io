@@ -1,0 +1,111 @@
+ var tosleft=e.pageX-conleft;
+                    var tostop=e.pageY-contop;
+                    console.log(tosleft);
+                    console.log(tostop);
+                    $(this).mousemove(function (e) {
+                    //    $(this).text('pageX = ' + e.pageX + ', pageY = ' + e.pageY);
+                    //    console.log(e.pageX-tosleft)
+                    //    console.log(e.pageY-tostop)   
+                        clx= e.pageX-tosleft;
+                        cly= e.pageY-tostop;
+                            clx=clx>0?(clx>conMaxW?conMaxW:clx):0;
+                            cly=cly>0?(cly>conMaxH?conMaxH:cly):0;
+                        $(this).css({left:clx,top:cly});
+                        
+                    })
+
+
+                   <style type="text/css">
+    	.main{
+			width: 100%;
+			height: auto;
+			padding-top: 100px;
+    	}
+    	a{
+    		display: block;
+    		text-align: center;
+    		font-size: 20px;
+    		margin-top: 200px;
+    	}
+    	.loading{
+            width: 150px;
+            height: 15px;
+            margin: 0 auto;
+            margin-top:100px;
+        }
+        .loading span{
+            display: inline-block;
+            width: 15px;
+            height: 100%;
+            margin-right: 5px;
+            background: lightgreen;
+            -webkit-transform-origin: right bottom;
+            -webkit-animation: load 1s ease infinite;
+        }
+        .loading span:last-child{
+            margin-right: 0px; 
+        }
+        @-webkit-keyframes load{
+            0%{
+                opacity: 1;
+                -webkit-transform: scale(1);
+            }
+            100%{
+                opacity: 0;
+                -webkit-transform: rotate(90deg) scale(.3);
+            }
+        }
+        .loading span:nth-child(1){
+            -webkit-animation-delay:0.13s;
+        }
+        .loading span:nth-child(2){
+            -webkit-animation-delay:0.26s;
+        }
+        .loading span:nth-child(3){
+            -webkit-animation-delay:0.39s;
+        }
+        .loading span:nth-child(4){
+            -webkit-animation-delay:0.52s;
+        }
+        .loading span:nth-child(5){
+            -webkit-animation-delay:0.65s;
+        }
+    </style> 
+
+
+
+    http://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb17b87a88f288f3c
+    
+    &redirect_uri=http://visitor.yesic.com/wechatv2/page/index.html&response_type=code&scope=snsapi_userinfo
+
+    var mldj={
+        name:'玛丽黛佳公众号',
+        appid:'wxb17b87a88f288f3c',
+        appsecret: '931fbb46b7257323bdc4edba6f7d1b39'
+    }
+    var mldjpay={
+        name:'玛丽黛佳微支付',
+        MCHID:'1487912832',
+        APIsecret:'pos1mariedalgarcom8082shzlhzpyxg'
+    }
+    var mldjapp={
+        name='震亮万店通',
+        AppID='wx66f848ae432ed910',
+        AppSecret=' 生成'
+    }
+    var mldjfangke={
+        name:'访客服务号，用于测试',
+        AppID:'wx39be71734252d6f1',
+        AppSecret:'df40eaec0ca97b3d805a22c2248238f0'
+    }
+    var mldjfangkewxmp={
+        name:'访客关联小程序，用于测试',
+        AppID:'wx5a65c04da638dc7b',
+        AppSecret:'05ea995a38c25e66b378403db158ac4b'
+    }
+    var mldjwxwork={
+        name:'菲扬企业微信，暂时用于企业微信其他部分使用，也可以用于新应用测试。',
+        CorpID:'wx905d19757c42aa3a',
+        AgentId:'',
+        Secret:''
+    }

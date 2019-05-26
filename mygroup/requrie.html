@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="clark" content="仅仅作为测试requrie的情况">
+
+    <script data-main="js/mainapp.js" src="https://cdn.bootcss.com/require.js/2.3.6/require.min.js"></script>
+    <title>POS系统维护</title>
+</head>
+
+<body>
+    <div class="container row">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">POS系统维护</h3>
+            </div>
+            <div class="panel-body">
+                <ul id="myTabs" class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#action">促销查询</a></li>
+                    <li role="presentation"><a href="#orgba">店铺人员</a></li>
+                    <li role="presentation"><a href="#vipapi">会员API</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="action">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">开始日期</div>
+                                <input type="date" class="form-control" name="bgdate">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">结束日期</div>
+                                <input type="date" class="form-control" name="endate">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">门店查询</div>
+                                <input type="text" class="form-control" name="orgname">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block">查询</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="orgba">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">门店</div>
+                                <input type="text" class="form-control" name="orgname">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block">查询</button>
+                    </form>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="vipapi">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">海信会员</div>
+                                <input type="text" class="form-control" name="hisense">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">驿氪会员</div>
+                                <input type="text" class="form-control" name="EZR">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">云积分会员</div>
+                                <input type="text" class="form-control" name="Enbrands">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block">查询</button>
+                    </form>
+                </div>
+            </div>
+            <div class="bs-example" data-example-id="condensed-table">
+                <table class="table table-condensed">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>

@@ -209,6 +209,38 @@ var app={
 			html+='';
 		return 		html;	
 	},
+	Storage: {
+		get: function (name) {
+				//获取key的值
+				return JSON.parse(localStorage.getItem(name));
+		},
+		set: function (name, val) {
+				//设置KEY value
+				localStorage.setItem(name, JSON.stringify(val));
+		},
+		add: function (name, addVal) {
+				//添加KEY的 value 的内容
+				var oldVal = this.get(name);
+				var newVal = oldVal.concat(addVal);
+				this.set(name, newVal);
+		},
+		rem: function (name) {
+				//删除指定的key
+				localStorage.removeItem(name);
+		},
+		cls: function () {
+				//删除所有的
+				localStorage.clear();
+		}
+},
+formToJson: function (data) {
+		var data = decodeURIComponent(data, true);//防止中文乱码
+		data = data.replace(/&/g, "\",\"");
+		data = data.replace(/=/g, "\":\"");
+		data = "{\"" + data + "\"}";
+		return data;
+}
+
 };
 
 var app1={
