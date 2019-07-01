@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>xxxx</title>
+ 
+    <script type="text/javascript">
+	var array = new Array(); //数组
+	//js中的二维数组的下标可以使字符串
+	array['北京'] = ["朝阳区", "昌平区", "海淀区"];
+	array['山东'] = ["青岛", "烟台", "泰安"];
+	array['河南'] = ["郑州", "洛阳", "开封"];
+	//java:array[0] = {"",""};
+ 
+	function initProvince() {
+		for(var i in array) {
+		    var provinceObj = document.getElementById("province");
+		    //创建一个选项
+		    /**
+		    * 参数一是：展示数据
+		    * 参数二是：value属性的值
+		    */
+		    var option = new Option(i, i); //jquery 
+ 
+		    provinceObj.add(option); //把创建的option添加到下拉列表中
+ 
+	}
+}
+ 
+	function changeCity() {
+		var provinceName = document.getElementById("province").value; 
+                //得到第一个下拉列表的值
+		var city = document.getElementById("city");
+		//清空第二个下拉列表
+		//方法一
+		//city.innerHTML = "";
+		//方法二
+		city.options.length = 1;
+		for(var p in array) {
+		    if(p == provinceName) {
+		    //遍历每个省份的城市
+			for(var c in array[p]) {
+				//创建一个option
+				var option = new Option(array[p][c], array[p][c]);
+				var city = document.getElementById("city");
+				city.add(option);
+			}
+		}
+	}
+}
+	</script>
+ 
+</head>
+ 
+<body onload="initProvince()">
+	<!--
+		onchange  内容发送变化触发
+	-->
+	<select id="province" onchange="changeCity()">
+		<option>-请选择-</option>
+	</select>
+ 
+	<select id="city">
+		<option value="">-请选择-</option>
+	</select>
+ 
+
+	<div id="tet" ref="xx" onclick="getref()">xxxxx</div>
+	<script>
+		function getref(e){
+			console.log(this)
+		}
+		
+	</script>
+</body>
+ 
+</html>

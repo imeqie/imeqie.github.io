@@ -109,3 +109,14 @@
         AgentId:'',
         Secret:''
     }
+
+
+
+    {"code":"0","data":
+    {"versions":1,"tbFormWorkOrderPOId":"work2fa721d17e044def8433a01e0c2e6b08","tbFormWorkOrderPO":{"approvers":"","closePerson":"","closeReason":"","closeTime":1559901543648,"createaTime":1559901543518,"creator":"","currentNode":"","currentNodeId":"","dataSource":1,"definitionId":"defnf1795e2e99c243bf92fb19817760f83a","definitionVersionsId":"form8cac66d3ada34db4966f2f0621f6dfb2","departmentName":"","formTitle":"第七季\"玩色大咖\"","headPic":"","id":"work2fa721d17e044def8433a01e0c2e6b08","importManagerUsername":"","instanceTitle":"第七季\"玩色大咖\"","isAnonymous":0,"isClose":0,"isover":"2","latitude":"","longitude":"","orderVersion":0,"personName":"","status":1,"wxUserId":""},"isSearchForm":null,
+    "url":"https://qy.do1.com.cn/open/vp/module/form.html?agentCode=form&corp_id=ww2b06571d4639765e#/open/detail?id=work2fa721d17e044def8433a01e0c2e6b08",
+    "isVip":false,"definitionId":"defnf1795e2e99c243bf92fb19817760f83a"},"desc":"成功"}
+    {"code":"22060",
+    "data":{"versions":1,"tbFormWorkOrderPOId":"workf137940f2b984068a1042607ac591fd3","tbFormWorkOrderPO":{"approvers":"","closePerson":"","closeReason":"","closeTime":null,"createaTime":1559901675984,"creator":"","currentNode":"","currentNodeId":"","dataSource":1,"definitionId":"defnf1795e2e99c243bf92fb19817760f83a","definitionVersionsId":"form8cac66d3ada34db4966f2f0621f6dfb2","departmentName":"","formTitle":"第七季\"玩色大咖\"","headPic":"","id":"workf137940f2b984068a1042607ac591fd3","importManagerUsername":"","instanceTitle":"第七季\"玩色大咖\"","isAnonymous":0,"isClose":0,"isover":"2","latitude":"","longitude":"","orderVersion":0,"personName":"","status":1,"wxUserId":""},"isSearchForm":null,"url":"https://qy.do1.com.cn/open/vp/module/form.html?agentCode=form&corp_id=ww2b06571d4639765e#/open/detail?id=workf137940f2b984068a1042607ac591fd3"
+    ,"isVip":false,"definitionId":"defnf1795e2e99c243bf92fb19817760f83a"},
+    "desc":"＂手机/Phone number＂不允许提交已存在的值"}

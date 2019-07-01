@@ -1,0 +1,71 @@
+<div class="layui-row layui-form-item">
+
+    <div class="layui-col-lg4">
+        <label class="layui-form-label">
+            图片名称<span style="color:red">*</span>：
+        </label>
+        <div class="layui-input-block">
+            <input type="text" readonly="" name="ImagePath_Text" id="ImagePath_Text" placeholder="产品图片"
+                lay-verify="required" autocomplete="off" class="layui-input"><i
+                class="layui-icon layui-icon-close selecttablex"></i>
+            <input type="hidden" name="ImagePath" id="ImagePath" placeholder="" autocomplete="off" class="layui-input"
+                lay-verify="required">
+
+        </div>
+    </div>
+    <div class="layui-col-lg4">
+        <label class="layui-form-label">
+            是否主图：
+        </label>
+        <div class="layui-input-block">
+            <select class="ecombox" name="IsMain" id="IsMain" sqlid="B1681A39-DAA4-43FD-98EC-5A4944586749"
+                lay-verify="required" lay-search="">
+                <option value="">请选择</option>
+                <option value="0">否</option>
+                <option value="1">是</option>
+            </select>
+            <div class="layui-form-select">
+                <div class="layui-select-title"><input type="text" placeholder="请选择" value="" class="layui-input"><i
+                        class="layui-edge"></i></div>
+                <dl class="layui-anim layui-anim-upbit">
+                    <dd lay-value="" class="layui-select-tips layui-this">请选择</dd>
+                    <dd lay-value="0" class="">否</dd>
+                    <dd lay-value="1" class="">是</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-lg4">
+        <label class="layui-form-label">
+            是否停用：
+        </label>
+        <div class="layui-input-block">
+            <select class="ecombox" name="StopStatus" id="StopStatus" sqlid="B1681A39-DAA4-43FD-98EC-5A4944586749"
+                lay-verify="required" lay-search="">
+                <option value="">请选择</option>
+                <option value="0">否</option>
+                <option value="1">是</option>
+            </select>
+            <div class="layui-form-select">
+                <div class="layui-select-title"><input type="text" placeholder="请选择" value="否" class="layui-input"><i
+                        class="layui-edge"></i></div>
+                <dl class="layui-anim layui-anim-upbit">
+                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                    <dd lay-value="0" class="layui-this">否</dd>
+                    <dd lay-value="1" class="">是</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-lg4">
+        <label class="layui-form-label">
+            备注：
+        </label>
+        <div class="layui-input-block">
+            <input type="text" name="Remake" id="Remake" lay-verify="length" lay-additional="512" placeholder="备注"
+                autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+</div>

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h2>自己的代码框架逻辑图，，，看不懂中文请好好学习中文。</h2>
 <p>1.前后端分离，数据库配置</p>
 <p>暂时的环境为：1.php 5.4,2.iis，3.window 2012,4.数据库sqlerver，5.HTML+CSS+js，6、## js部分为jquery，7.css部分使用bootstrap</p>
