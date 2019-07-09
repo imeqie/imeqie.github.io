@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Turn checkboxes and radio buttons into toggle switches">
+    <meta name="author" content="Mattia Larentis, Emanuele Marchi and Peter Stein">
+    <title>POS系统维护</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <style>
+        @media screen and (max-width: 2048px) {
+            .leftmenu {
+                position: fixed;
+                width: 200px;
+            }
+        }
+        @media screen and (max-width: 1300px) {
+            .leftmenu {
+                position: fixed;
+                width: 60px;
+            }
+        }
+        @media screen and (max-width: 1100px) {
+            .leftmenu {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="leftmenu">
+        <ul id="myTabs" class="nav nav-pills nav-stacked" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
+                    aria-expanded="true">主LOG</a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile"
+                    aria-expanded="false">其他</a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#other" role="tab" id="other-tab" data-toggle="tab" aria-controls="other"
+                    aria-expanded="false">未知</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">AI-LOG查询系统</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="快速搜索">
+                            </div>
+                            <button type="submit" class="btn btn-default">查询</button>
+                        </form>
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <div id="myTabContent" class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                <div class="row">
+
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label for="formDate">日期范围</label>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-5 col-md-5 col-lg-6">
+                                        开始日期<input type="date" class="form-control" name="bgdate" placeholder="日期">
+                                    </div>
+                                    <div class="col-xs-6 col-sm-5 col-md-5 col-lg-6">
+                                        结束日期<input type="date" class="form-control" name="endate" placeholder="日期">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+
+                                <button type="button" class="btn btn-default">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="table table-bordered table-hover">
+                        <caption>日志查询</caption>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="formquet">请求内容:</span>
+                                        <input type="text" class="form-control thform" id="formque"
+                                            aria-describedby="formquet">
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="formrest">相应参数:</span>
+                                        <input type="text" class="form-control thform" id="formres"
+                                            aria-describedby="formrest">
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="formtimet">时间:</span>
+                                        <input type="text" class="form-control thform" id="formtime"
+                                            aria-describedby="formtimet">
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                <p>dfasdfasdfdsfa</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="other" aria-labelledby="other-tab">
+                <p>dfasdfasdfdsfa</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = {
+            getdate: function (num) {
+                //关于日期
+                var myDate = new Date();
+                var yyyy = myDate.getFullYear();
+                var mm = myDate.getMonth() + 1;
+                var dd = myDate.getDate();
+                var h = myDate.getHours();
+                var m = myDate.getMinutes();
+                var s = myDate.getSeconds();
+                switch (num) {
+                    case 0:
+                        //当天 2019-02-18
+                        mm = mm < 10 ? '0' + mm : mm;
+                        dd = dd < 10 ? '0' + dd : dd;
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 1:
+                        //此刻 14:11:15
+                        h = h < 10 ? '0' + h : h;
+                        m = m < 10 ? '0' + m : m;
+                        s = s < 10 ? '0' + s : s;
+                        return h + ':' + m + ':' + s;
+                        break;
+                    case 2:
+                        //当月有几天 
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate() < 10 ? '0' + fristDay.getDate() : fristDay.getDate();
+                        return dd;
+                        break;
+                    case 3:
+                        //当月第一天
+                        mm = mm < 10 ? '0' + mm : mm;
+                        var lastDay = new Date(yyyy, mm, 1);
+                        dd = lastDay.getDate() < 10 ? '0' + lastDay.getDate() : lastDay.getDate();
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 4:
+                        //当月最后一天
+                        mm = mm < 10 ? '0' + mm : mm;
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate() < 10 ? '0' + fristDay.getDate() : fristDay.getDate();
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 5:
+                        //上月第一天
+                        mm = mm - 1;
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy;
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);
+                        var lastDay = new Date(yyyy, mm, 1);
+                        dd = '0' + lastDay.getDate(); //获取第一天，所以不需要判断，直接0+1
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 6:
+                        //上月最后一天
+                        mm = mm - 1;
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy;
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate(); //获取最后一天，所以不需要加0前缀
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 7:
+                        //最近七天
+
+                        console.log('最近七天');
+                        dd = dd - 7;
+                        //console.log(dd);
+                        mm = (dd < 1 ? mm = mm - 1 : mm); //当日期-7 产生负数，月份自动减1.
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy; //如果月份减1等于0，年份减1.
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);//月份等于0，自动变成12月份.
+                        console.log(mm);
+                        nday = this.getdate(8) + dd; //获取上月的天数+最近七天的差额
+                        console.log(nday);
+                        dd = (dd < 1 ? nday : ((dd < 10) ? '0' + dd : dd));
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 8:
+                        //上月有几天
+                        mm = mm - 1;
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy;
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);
+                        var fristDay = new Date(yyyy, mm, 0);
+                        dd = fristDay.getDate(); //获取最后一天，所以不需要加0前缀
+                        return dd;
+                        break;
+                    case 11:
+                        //昨天
+
+                        //console.log('昨天');
+                        dd = dd - 1;
+                        //console.log(dd);
+                        mm = (dd < 1 ? mm = mm - 1 : mm); //当日期-7 产生负数，月份自动减1.
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy; //如果月份减1等于0，年份减1.
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);//月份等于0，自动变成12月份.
+                        //console.log(mm);
+                        nday = this.getdate(8) + dd; //获取上月的天数+最近七天的差额
+                        //console.log(nday);
+                        dd = (dd < 1 ? nday : ((dd < 10) ? '0' + dd : dd));
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 12:
+                        //前天
+
+                        console.log('前天');
+                        dd = dd - 2;
+                        //console.log(dd);
+                        mm = (dd < 1 ? mm = mm - 1 : mm); //当日期-7 产生负数，月份自动减1.
+                        yyyy = (mm == 0) ? (yyyy - 1) : yyyy; //如果月份减1等于0，年份减1.
+                        mm = (mm == 0) ? '12' : ((mm < 10) ? '0' + mm : mm);//月份等于0，自动变成12月份.
+                        console.log(mm);
+                        nday = this.getdate(8) + dd; //获取上月的天数+最近七天的差额
+                        console.log(nday);
+                        dd = (dd < 1 ? nday : ((dd < 10) ? '0' + dd : dd));
+                        ymd = yyyy + '-' + mm + '-' + dd;
+                        return ymd;
+                        break;
+                    case 33:
+                        mm = mm < 10 ? '0' + mm : mm;
+                        dd = dd < 10 ? '0' + dd : dd;
+
+                        h = h < 10 ? '0' + h : h;
+                        m = m < 10 ? '0' + m : m;
+                        s = s < 10 ? '0' + s : s;
+                        return yyyy + mm + dd + h + m + s;
+                        break;
+                    default:
+                        // 年月日时分秒2019-2-18 14:13:10 缺点 月份和日期不补零
+                        return myDate.toLocaleString();
+                        break;
+                };
+
+            },
+            toajax: function (urls, codes, contents) {
+                //关于 ajax
+                var res = "";
+                $.ajax({
+                    type: "POST",
+                    url: urls,
+                    data: { "code": codes, "content": contents },
+                    async: false,
+                    //dataType: "json",
+                    success: function (message, status) {
+                        res = message;
+                    },
+                    error: function (message, status, errorThrown) { res = ({ "returnCode": 404, "returnMsg": "链接失败！" }) },
+                    compile: function (message) { res = message }
+                });
+                return res;
+            },
+            log: function (log) {
+                console.log(log);
+            },
+            Storage: {
+                get: function (name) {
+                    //获取key的值
+                    return JSON.parse(localStorage.getItem(name));
+                },
+                set: function (name, val) {
+                    //设置KEY value
+                    localStorage.setItem(name, JSON.stringify(val));
+                },
+                add: function (name, addVal) {
+                    //添加KEY的 value 的内容
+                    var oldVal = this.get(name);
+                    var newVal = oldVal.concat(addVal);
+                    this.set(name, newVal);
+                },
+                rem: function (name) {
+                    //删除指定的key
+                    localStorage.removeItem(name);
+                },
+                cls: function () {
+                    //删除所有的
+                    localStorage.clear();
+                }
+            },
+            formToJson: function (data) {
+                var data = decodeURIComponent(data, true);//防止中文乱码
+                data = data.replace(/&/g, "\",\"");
+                data = data.replace(/=/g, "\":\"");
+                data = "{\"" + data + "\"}";
+                return data;
+            },
+            jsarr: function (str) {
+                var arr = str.split(";");
+                var srr = [];
+                for (let index = 0; index < arr.length; index++) {
+                    srr.push({
+                        a: arr[index].split(":")[0],
+                        b: arr[index].split(":")[1],
+                        bol: false,
+                    })
+                }
+                return srr;
+            }
+
+        };
+        $("input[name='bgdate']").val(app.getdate(11));
+        $("input[name='endate']").val(app.getdate(0));
+        var tabletd = $('table>tbody').html();
+        $('button.btn').on('click', function () {
+            let bg = $("input[name='bgdate']").val();
+            let en = $("input[name='endate']").val();
+            let diff = (new Date(en) - new Date(bg)) / (1000 * 60 * 60 * 24);
+            if (bg < en && diff < 4) {
+                var content = {
+                    bgdate: bg,
+                    endate: en
+                }
+                var res = app.toajax('php/selectlog.php', 'newdst', content);
+                //console.log(res);
+                res = $.parseJSON(res);
+                //console.log(res)
+                $('table>tbody').html();
+                var html = "";
+                for (let x in res) {
+                    html += '<tr>';
+                    html += '<th scope="row">' + (parseInt(x) + 1) + '</th>';
+                    let ends = (parseInt(res[x].request.indexOf("Dtls")) - 1)
+                    let req = eval("(" + res[x].request.substring(0, ends) + '}' + ")");
+                    html += '<td>' + '门店：' + req.ShopCode + '</br>' + '单号：' + req.SaleNo + '</br>' + '手机号：' + req.VipOffCode + '</br>' + '销售日期：' + req.SaleDate + '</br>' + '销售支付金额：' + req.SalePayMoney + '</td>';
+
+
+                    let relt = $.parseJSON(res[x].result);
+                    let rets = "";
+                    if (relt.Status) {
+                        rets = relt.Result;
+                    } else {
+                        rets = "";
+                        let ns = app.jsarr(relt.Result);
+                        //console.log(ns);
+                    }
+                    html += '<td>' + '请求状态：' + relt.Status + '</br>' + '说明:' + rets + '</td>';
+                    html += '<td>' + res[x].uptdate + '</td>';
+                    html += '</tr>'
+                }
+                $('table>tbody').html(html);
+                tabletd = html;
+            }
+            else if (diff > 3) {
+                alert('日期超过3天');
+            }
+            else {
+                alert('日期范围异常，请重新输入！');
+            }
+        })
+
+        $('.thform').bind('input propertychange', function (e) {
+            let thisval = $(this).val();
+
+            if (thisval != '') {
+                let thishtmls = "";;
+                $('tbody>tr').each(function () {
+                    let thishtml = $(this).html();
+                    if (thishtml.indexOf(thisval) > -1) {
+                        thishtmls = thishtmls + "<tr>" + thishtml + '</tr>';
+
+                    }
+                    console.log(thishtmls);
+                    $('tbody').html(thishtmls);
+                    //console.log(thishtml.indexOf(thisval));
+                })
+            } else {
+                $('tbody').html(tabletd);
+            }
+        })
+
+    </script>
+</body>
+
+</html>
